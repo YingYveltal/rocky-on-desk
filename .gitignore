@@ -86,3 +86,5 @@ scripts/*
 
 # Cursor local config (MCP, rules from omc setup)
 .cursor/
+npm-install.log
+npm-log.txt
