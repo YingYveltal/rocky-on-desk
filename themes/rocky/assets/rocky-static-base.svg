@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-15 -25 45 45" width="500" height="500">
+  <!-- Static base reference: Rocky in neutral standing pose, no animation -->
+  <rect id="ground-shadow" x="-1" y="15" width="17" height="1" fill="#000000" opacity="0.5"/>
+
+  <!-- 4 spider-like legs -->
+  <g fill="#A47148">
+    <rect x="2"  y="11" width="2" height="4"/>
+    <rect x="5"  y="12" width="1" height="3"/>
+    <rect x="9"  y="12" width="1" height="3"/>
+    <rect x="11" y="11" width="2" height="4"/>
+  </g>
+  <g fill="#6B4A2D">
+    <rect x="2"  y="14" width="2" height="1"/>
+    <rect x="11" y="14" width="2" height="1"/>
+  </g>
+
+  <!-- Raised left arm doing rock-on gesture -->
+  <g fill="#A47148">
+    <rect x="2" y="3"  width="2" height="3"/>
+    <rect x="3" y="1"  width="2" height="2"/>
+    <rect x="3" y="-1" width="2" height="2"/>
+  </g>
+
+  <!-- Right arm sticking out -->
+  <g fill="#A47148">
+    <rect x="13" y="7" width="2" height="2"/>
+  </g>
+
+  <!-- Main rocky torso -->
+  <g fill="#A47148">
+    <rect x="2" y="5" width="11" height="7"/>
+  </g>
+
+  <!-- Stone segmentation cracks -->
+  <g fill="#6B4A2D">
+    <rect x="2" y="8"  width="11" height="0.4"/>
+    <rect x="6" y="5"  width="0.4" height="3"/>
+    <rect x="9" y="8.4" width="0.4" height="3.6"/>
+  </g>
+
+  <!-- Highlight on top -->
+  <g fill="#C49A6C">
+    <rect x="3"  y="5" width="2" height="1"/>
+    <rect x="8"  y="5" width="2" height="1"/>
+    <rect x="11" y="5" width="1" height="1"/>
+  </g>
+
+  <!-- Green crystal accents -->
+  <g fill="#5DBF7E">
+    <rect x="4"  y="6"  width="1" height="1"/>
+    <rect x="10" y="6"  width="1" height="1"/>
+    <rect x="6"  y="10" width="2" height="1"/>
+    <rect x="3"  y="11" width="1" height="1"/>
+  </g>
+  <g fill="#2E7D5C">
+    <rect x="4"  y="7"  width="1" height="0.4"/>
+    <rect x="6"  y="11" width="2" height="0.4"/>
+  </g>
+
+  <!-- Eye holes (dark recesses) -->
+  <g fill="#1A1A1A">
+    <rect x="4"  y="8" width="1" height="2"/>
+    <rect x="10" y="8" width="1" height="2"/>
+  </g>
+</svg>

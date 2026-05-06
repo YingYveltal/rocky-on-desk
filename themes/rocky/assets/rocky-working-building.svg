@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-15 -25 45 45" width="500" height="500">
+  <defs>
+    <style>
+      .body-build {
+        transform-origin: 7.5px 15px;
+        animation: build-bob 2s infinite ease-in-out;
+      }
+      .arm-hammer {
+        transform-origin: 4px 5px;
+        animation: hammer 0.6s infinite ease-in-out;
+      }
+      .stack-rise {
+        animation: stack-grow 4s infinite ease-in-out;
+      }
+      .stone-block { opacity: 0; }
+      .b1 { animation: appear 4s infinite; animation-delay: 0s; }
+      .b2 { animation: appear 4s infinite; animation-delay: 1s; }
+      .b3 { animation: appear 4s infinite; animation-delay: 2s; }
+      .b4 { animation: appear 4s infinite; animation-delay: 3s; }
+      .spark-hit { opacity: 0; animation: spark 0.6s infinite; }
+
+      @keyframes build-bob {
+        0%, 100% { transform: translateY(0); }
+        50%      { transform: translateY(-0.5px); }
+      }
+      @keyframes hammer {
+        0%, 100% { transform: rotate(0deg); }
+        50%      { transform: rotate(-25deg) translateY(-1px); }
+      }
+      @keyframes appear {
+        0%, 100% { opacity: 0; transform: translateY(2px); }
+        50%      { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes spark {
+        0%, 100% { opacity: 0; }
+        50%      { opacity: 1; }
+      }
+    </style>
+  </defs>
+
+  <rect x="-3" y="15" width="21" height="1" fill="#000000" opacity="0.5"/>
+
+  <!-- Stack of rocky blocks being built (right side) -->
+  <g transform="translate(15, 9)">
+    <rect class="stone-block b1" x="0" y="5" width="3" height="2" fill="#A47148"/>
+    <rect class="stone-block b2" x="0" y="3" width="3" height="2" fill="#A47148"/>
+    <rect class="stone-block b3" x="0" y="1" width="3" height="2" fill="#A47148"/>
+    <rect class="stone-block b4" x="0" y="-1" width="3" height="2" fill="#A47148"/>
+    <rect class="stone-block b1" x="1" y="5.4" width="1" height="0.4" fill="#5DBF7E"/>
+    <rect class="stone-block b3" x="1" y="1.4" width="1" height="0.4" fill="#5DBF7E"/>
+  </g>
+
+  <!-- Sparks on impact -->
+  <g fill="#FFE699">
+    <rect class="spark-hit" x="14" y="6" width="1" height="1"/>
+    <rect class="spark-hit" x="16" y="7" width="1" height="1"/>
+  </g>
+
+  <g class="body-build">
+    <g fill="#A47148">
+      <rect x="2"  y="11" width="2" height="4"/>
+      <rect x="5"  y="12" width="1" height="3"/>
+      <rect x="9"  y="12" width="1" height="3"/>
+      <rect x="11" y="11" width="2" height="4"/>
+    </g>
+
+    <!-- Hammering arm -->
+    <g class="arm-hammer">
+      <g fill="#A47148">
+        <rect x="2" y="3"  width="2" height="3"/>
+        <rect x="3" y="1"  width="2" height="2"/>
+        <rect x="3" y="-1" width="2" height="2"/>
+      </g>
+      <!-- Held rock hammer -->
+      <rect x="3" y="-2" width="2" height="1" fill="#6B4A2D"/>
+    </g>
+
+    <!-- Reaching right arm toward stack -->
+    <g fill="#A47148">
+      <rect x="13" y="7" width="3" height="2"/>
+    </g>
+
+    <rect x="2" y="5" width="11" height="7" fill="#A47148"/>
+
+    <g fill="#6B4A2D">
+      <rect x="2" y="8"  width="11" height="0.4"/>
+      <rect x="6" y="5"  width="0.4" height="3"/>
+      <rect x="9" y="8.4" width="0.4" height="3.6"/>
+    </g>
+
+    <g fill="#C49A6C">
+      <rect x="3"  y="5" width="2" height="1"/>
+      <rect x="8"  y="5" width="2" height="1"/>
+    </g>
+
+    <g fill="#5DBF7E">
+      <rect x="4"  y="6"  width="1" height="1"/>
+      <rect x="10" y="6"  width="1" height="1"/>
+      <rect x="6"  y="10" width="2" height="1"/>
+    </g>
+
+    <g fill="#1A1A1A">
+      <rect x="4"  y="8.5" width="1" height="1.5"/>
+      <rect x="10" y="8.5" width="1" height="1.5"/>
+    </g>
+  </g>
+</svg>

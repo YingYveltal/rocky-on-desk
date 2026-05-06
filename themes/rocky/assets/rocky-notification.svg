@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-15 -25 45 45" width="500" height="500">
+  <defs>
+    <style>
+      .body-pop {
+        transform-origin: 7.5px 15px;
+        animation: pop 1.2s infinite ease-in-out;
+      }
+      .arm-wave {
+        transform-origin: 4px 5px;
+        animation: arm-wave 0.4s infinite alternate ease-in-out;
+      }
+      .alert-bob {
+        animation: alert-bob 1s infinite ease-in-out;
+      }
+      .alert-flash { animation: alert-flash 0.6s infinite ease-in-out; }
+      .crystal-bright { animation: bright 1s infinite ease-in-out; }
+      .lines { opacity: 0; animation: lines-fade 1s infinite ease-in-out; }
+
+      @keyframes pop {
+        0%, 100% { transform: translateY(0) scale(1); }
+        20%      { transform: translateY(-1px) scale(1.04, 0.96); }
+        50%      { transform: translateY(-2px) scale(0.96, 1.04); }
+        80%      { transform: translateY(-1px) scale(1.04, 0.96); }
+      }
+      @keyframes arm-wave {
+        0%   { transform: rotate(-5deg); }
+        100% { transform: rotate(15deg); }
+      }
+      @keyframes alert-bob {
+        0%, 100% { transform: translateY(0); }
+        50%      { transform: translateY(-1px); }
+      }
+      @keyframes alert-flash {
+        0%, 100% { opacity: 1; }
+        50%      { opacity: 0.4; }
+      }
+      @keyframes bright {
+        0%, 100% { opacity: 1; }
+        50%      { opacity: 0.6; }
+      }
+      @keyframes lines-fade {
+        0%, 100% { opacity: 0; }
+        50%      { opacity: 1; }
+      }
+    </style>
+  </defs>
+
+  <rect x="-3" y="15" width="21" height="1" fill="#000000" opacity="0.5"/>
+
+  <!-- Surprise lines around character -->
+  <g class="lines" fill="#5DBF7E">
+    <rect x="-2" y="0"  width="2" height="0.6"/>
+    <rect x="15" y="0"  width="2" height="0.6"/>
+    <rect x="-3" y="6"  width="2" height="0.6"/>
+    <rect x="16" y="6"  width="2" height="0.6"/>
+    <rect x="-2" y="11" width="2" height="0.6"/>
+    <rect x="15" y="11" width="2" height="0.6"/>
+  </g>
+
+  <!-- Big exclamation mark -->
+  <g class="alert-bob">
+    <g class="alert-flash" fill="#FF9500">
+      <rect x="11" y="-9" width="2" height="6"/>
+      <rect x="11" y="-2" width="2" height="2"/>
+    </g>
+    <g fill="#1A1A1A">
+      <rect x="11" y="-9" width="0.4" height="6"/>
+      <rect x="11" y="-2" width="0.4" height="2"/>
+    </g>
+  </g>
+
+  <g class="body-pop">
+    <g fill="#A47148">
+      <rect x="2"  y="11" width="2" height="4"/>
+      <rect x="5"  y="12" width="1" height="3"/>
+      <rect x="9"  y="12" width="1" height="3"/>
+      <rect x="11" y="11" width="2" height="4"/>
+    </g>
+
+    <!-- Waving arm -->
+    <g class="arm-wave">
+      <g fill="#A47148">
+        <rect x="2" y="3"  width="2" height="3"/>
+        <rect x="3" y="1"  width="2" height="2"/>
+        <rect x="3" y="-1" width="2" height="2"/>
+      </g>
+    </g>
+
+    <rect x="13" y="7" width="2" height="2" fill="#A47148"/>
+    <rect x="2" y="5" width="11" height="7" fill="#A47148"/>
+
+    <g fill="#6B4A2D">
+      <rect x="2" y="8"  width="11" height="0.4"/>
+      <rect x="6" y="5"  width="0.4" height="3"/>
+      <rect x="9" y="8.4" width="0.4" height="3.6"/>
+    </g>
+
+    <g fill="#C49A6C">
+      <rect x="3"  y="5" width="2" height="1"/>
+      <rect x="8"  y="5" width="2" height="1"/>
+    </g>
+
+    <g class="crystal-bright" fill="#5DBF7E">
+      <rect x="4"  y="6"  width="1" height="1"/>
+      <rect x="10" y="6"  width="1" height="1"/>
+      <rect x="6"  y="10" width="2" height="1"/>
+    </g>
+
+    <!-- Wide surprised eyes -->
+    <g fill="#1A1A1A">
+      <rect x="3.5" y="7.5" width="1.5" height="2.5"/>
+      <rect x="9.5" y="7.5" width="1.5" height="2.5"/>
+    </g>
+    <!-- Eye highlights -->
+    <g fill="#FFFFFF">
+      <rect x="4"   y="8" width="0.5" height="0.5"/>
+      <rect x="10"  y="8" width="0.5" height="0.5"/>
+    </g>
+  </g>
+</svg>

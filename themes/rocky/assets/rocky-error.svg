@@ -1,128 +1,106 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-15 -25 45 45" width="500" height="500">
-  <style>
-    /* Startled shake */
-    @keyframes shake {
-      0%, 100% { transform: translate(0, 0); }
-      10% { transform: translate(-1px, 0.5px); }
-      20% { transform: translate(1px, -0.5px); }
-      30% { transform: translate(-1px, 0); }
-      40% { transform: translate(1px, 0.5px); }
-      50% { transform: translate(0, 0); }
-    }
-    /* Sensor alarm flash */
-    @keyframes alarm {
-      0%, 100% { opacity: 1; fill: #FF4444; }
-      50% { opacity: 0.3; fill: #FF0000; }
-    }
-    .shake-anim {
-      animation: shake 0.5s ease-in-out infinite;
-    }
-    .alarm-anim {
-      animation: alarm 0.4s ease-in-out infinite;
-    }
-  </style>
+  <defs>
+    <style>
+      .body-shake {
+        transform-origin: 7.5px 13px;
+        animation: angry-shake 0.5s infinite ease-in-out;
+      }
+      .arm-fist {
+        transform-origin: 4px 5px;
+        animation: fist-shake 0.5s infinite ease-in-out;
+      }
+      .crystal-red {
+        animation: red-flash 0.6s infinite ease-in-out;
+      }
+      .error-flash { animation: err-flash 0.8s infinite ease-in-out; }
+      .crack-show { animation: crack-fade 1.5s infinite ease-in-out; }
 
-  <!-- Shadow -->
-  <ellipse cx="7.5" cy="16" rx="9" ry="2" fill="rgba(0,0,0,0.12)"/>
+      @keyframes angry-shake {
+        0%, 100% { transform: translateX(0) rotate(0deg); }
+        25%      { transform: translateX(-0.5px) rotate(-2deg); }
+        75%      { transform: translateX(0.5px)  rotate(2deg); }
+      }
+      @keyframes fist-shake {
+        0%, 100% { transform: rotate(-3deg); }
+        50%      { transform: rotate(-12deg) translateY(-1px); }
+      }
+      @keyframes red-flash {
+        0%, 100% { fill: #FF5252; opacity: 1; }
+        50%      { fill: #5DBF7E; opacity: 0.7; }
+      }
+      @keyframes err-flash {
+        0%, 100% { opacity: 1; }
+        50%      { opacity: 0.2; }
+      }
+      @keyframes crack-fade {
+        0%, 100% { opacity: 0.4; }
+        50%      { opacity: 1; }
+      }
+    </style>
+  </defs>
 
-  <!-- Legs: splayed out (startled) -->
-  <g fill="#6B5340">
-    <!-- Back left - spread wide -->
-    <rect x="-4" y="12" width="2" height="1"/>
-    <rect x="-5" y="13" width="2" height="1"/>
-    <rect x="-5" y="14" width="2" height="1"/>
-    <rect x="-4" y="15" width="2" height="1"/>
-    <rect x="-3" y="16" width="2" height="1"/>
-    <!-- Mid left - spread -->
-    <rect x="-2" y="10" width="2" height="1"/>
-    <rect x="-3" y="11" width="2" height="1"/>
-    <rect x="-4" y="12" width="2" height="1"/>
-    <rect x="-4" y="13" width="2" height="1"/>
-    <rect x="-3" y="14" width="2" height="1"/>
-    <rect x="-3" y="15" width="2" height="1"/>
-    <rect x="-2" y="16" width="2" height="1"/>
-    <!-- Front left - raised in alarm -->
-    <rect x="0" y="5" width="2" height="1"/>
-    <rect x="-1" y="6" width="2" height="1"/>
-    <rect x="-2" y="7" width="2" height="1"/>
-    <rect x="-2" y="8" width="2" height="1"/>
-    <rect x="-2" y="9" width="2" height="1"/>
-    <rect x="-1" y="10" width="2" height="1"/>
-    <rect x="-1" y="11" width="2" height="1"/>
-    <rect x="0" y="12" width="2" height="1"/>
-    <!-- Front right - raised in alarm -->
-    <rect x="13" y="5" width="2" height="1"/>
-    <rect x="14" y="6" width="2" height="1"/>
-    <rect x="15" y="7" width="2" height="1"/>
-    <rect x="15" y="8" width="2" height="1"/>
-    <rect x="15" y="9" width="2" height="1"/>
-    <rect x="14" y="10" width="2" height="1"/>
-    <rect x="14" y="11" width="2" height="1"/>
-    <rect x="13" y="12" width="2" height="1"/>
-    <!-- Back right - spread -->
-    <rect x="16" y="12" width="2" height="1"/>
-    <rect x="17" y="13" width="2" height="1"/>
-    <rect x="17" y="14" width="2" height="1"/>
-    <rect x="16" y="15" width="2" height="1"/>
-    <rect x="15" y="16" width="2" height="1"/>
-    <!-- Center back - rooted -->
-    <rect x="6" y="8" width="2" height="1"/>
-    <rect x="6" y="9" width="2" height="1"/>
-    <rect x="6" y="10" width="2" height="1"/>
-    <rect x="6" y="11" width="2" height="1"/>
-    <rect x="6" y="12" width="2" height="1"/>
-    <rect x="6" y="13" width="2" height="1"/>
-    <rect x="6" y="14" width="2" height="1"/>
-    <rect x="7" y="15" width="2" height="1"/>
-    <rect x="7" y="16" width="2" height="1"/>
+  <rect x="-1" y="15" width="17" height="1" fill="#000000" opacity="0.5"/>
+
+  <!-- Anger spark glyph (top right) -->
+  <g class="error-flash" fill="#FF3B30">
+    <rect x="11" y="-3" width="1" height="2"/>
+    <rect x="13" y="-3" width="1" height="2"/>
+    <rect x="12" y="-2" width="1" height="1"/>
+    <rect x="10" y="-2" width="1" height="1"/>
+    <rect x="14" y="-2" width="1" height="1"/>
   </g>
 
-  <!-- Body: tilted back slightly, shaking -->
-  <g class="shake-anim">
-    <g fill="#8B7355">
-      <rect x="5" y="-2" width="5" height="1"/>
-      <rect x="3" y="-1" width="9" height="1"/>
-      <rect x="1" y="0" width="13" height="1"/>
-      <rect x="0" y="1" width="15" height="1"/>
-      <rect x="-1" y="2" width="17" height="1"/>
-      <rect x="-1" y="3" width="17" height="1"/>
-      <rect x="-1" y="4" width="17" height="1"/>
-      <rect x="-1" y="5" width="17" height="1"/>
-      <rect x="0" y="6" width="15" height="1"/>
-      <rect x="1" y="7" width="13" height="1"/>
-      <rect x="3" y="8" width="9" height="1"/>
-      <rect x="5" y="9" width="5" height="1"/>
+  <g class="body-shake">
+    <g fill="#A47148">
+      <rect x="2"  y="11" width="2" height="4"/>
+      <rect x="5"  y="12" width="1" height="3"/>
+      <rect x="9"  y="12" width="1" height="3"/>
+      <rect x="11" y="11" width="2" height="4"/>
     </g>
-    <g fill="#6B5340">
-      <rect x="3" y="1" width="2" height="1"/>
-      <rect x="10" y="1" width="2" height="1"/>
-      <rect x="2" y="2" width="1" height="2"/>
-      <rect x="12" y="2" width="1" height="1"/>
-      <rect x="6" y="3" width="2" height="2"/>
-      <rect x="9" y="4" width="1" height="1"/>
-      <rect x="2" y="5" width="2" height="1"/>
-      <rect x="11" y="5" width="1" height="1"/>
-      <rect x="5" y="6" width="1" height="1"/>
-      <rect x="9" y="6" width="1" height="1"/>
-      <rect x="6" y="7" width="2" height="1"/>
+
+    <!-- Angry raised fist -->
+    <g class="arm-fist">
+      <g fill="#A47148">
+        <rect x="2" y="3"  width="2" height="3"/>
+        <rect x="3" y="0"  width="3" height="3"/>
+      </g>
+      <rect x="3" y="0" width="0.4" height="3" fill="#6B4A2D"/>
     </g>
-    <g fill="#A0896C">
-      <rect x="6" y="-1" width="2" height="1"/>
-      <rect x="4" y="0" width="2" height="1"/>
-      <rect x="5" y="2" width="1" height="1"/>
-      <rect x="8" y="2" width="3" height="1"/>
-      <rect x="7" y="4" width="2" height="1"/>
-      <rect x="4" y="5" width="1" height="1"/>
-      <rect x="7" y="6" width="1" height="1"/>
+
+    <rect x="13" y="7" width="2" height="2" fill="#A47148"/>
+    <rect x="2" y="5" width="11" height="7" fill="#A47148"/>
+
+    <!-- More cracks (angry/strained body) -->
+    <g class="crack-show" fill="#6B4A2D">
+      <rect x="2" y="8"  width="11" height="0.4"/>
+      <rect x="6" y="5"  width="0.4" height="3"/>
+      <rect x="9" y="8.4" width="0.4" height="3.6"/>
+      <rect x="3" y="6"  width="0.4" height="2"/>
+      <rect x="11" y="9" width="0.4" height="2"/>
     </g>
-    <!-- Sensor dots: RED ALERT -->
-    <g class="alarm-anim" fill="#FF4444">
-      <rect x="4" y="0" width="2" height="1"/>
-      <rect x="9" y="0" width="2" height="1"/>
-      <rect x="4" y="1" width="1" height="1"/>
-      <rect x="10" y="1" width="1" height="1"/>
-      <rect x="3" y="-1" width="1" height="1" fill="#FF0000" opacity="0.8"/>
-      <rect x="11" y="-1" width="1" height="1" fill="#FF0000" opacity="0.8"/>
+
+    <g fill="#C49A6C">
+      <rect x="3"  y="5" width="2" height="1"/>
+      <rect x="8"  y="5" width="2" height="1"/>
     </g>
+
+    <g class="crystal-red">
+      <rect x="4"  y="6"  width="1" height="1"/>
+      <rect x="10" y="6"  width="1" height="1"/>
+      <rect x="6"  y="10" width="2" height="1"/>
+    </g>
+
+    <!-- Angry V-shaped eyes -->
+    <g fill="#1A1A1A">
+      <rect x="3.7"  y="8" width="0.5" height="2" transform="rotate(20 3.95 9)"/>
+      <rect x="4.6"  y="8.5" width="0.5" height="1.5" transform="rotate(20 4.85 9.25)"/>
+      <rect x="9.7"  y="8" width="0.5" height="2" transform="rotate(-20 9.95 9)"/>
+      <rect x="10.6" y="8.5" width="0.5" height="1.5" transform="rotate(-20 10.85 9.25)"/>
+    </g>
+  </g>
+
+  <!-- ERROR text -->
+  <g class="error-flash">
+    <text x="7.5" y="-7" text-anchor="middle" font-family="'Courier New', monospace" font-size="3.5" font-weight="700" fill="#FF3B30">ERROR</text>
   </g>
 </svg>

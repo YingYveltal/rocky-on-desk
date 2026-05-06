@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-15 -25 45 45" width="500" height="500">
+  <defs>
+    <style>
+      .breathe-anim {
+        transform-origin: 7.5px 13px;
+        animation: breathe 3.6s infinite ease-in-out;
+      }
+      .head-turn {
+        transform-origin: 7.5px 9px;
+        animation: head-look 7s infinite ease-in-out;
+      }
+      .eyes-look {
+        animation: eyes-scan 7s infinite ease-in-out;
+      }
+      .crystal-glow {
+        animation: pulse 3s infinite ease-in-out;
+      }
+      .question { opacity: 0; animation: question-pop 7s infinite ease-in-out; }
+
+      @keyframes breathe {
+        0%, 100% { transform: scale(1, 1); }
+        50%      { transform: scale(1.015, 0.985) translate(0, 0.4px); }
+      }
+      @keyframes head-look {
+        0%, 12%, 100% { transform: rotate(0deg); }
+        25%, 35%      { transform: rotate(-5deg) translateX(-0.5px); }
+        50%, 60%      { transform: rotate(0deg); }
+        72%, 82%      { transform: rotate(5deg) translateX(0.5px); }
+      }
+      @keyframes eyes-scan {
+        0%, 12%, 100%  { transform: translateX(0); }
+        25%, 35%       { transform: translateX(-0.6px); }
+        50%, 60%       { transform: translateX(0); }
+        72%, 82%       { transform: translateX(0.6px); }
+      }
+      @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50%      { opacity: 0.6; }
+      }
+      @keyframes question-pop {
+        0%, 65%, 100%  { opacity: 0; transform: scale(0.5); }
+        72%, 80%       { opacity: 1; transform: scale(1); }
+      }
+    </style>
+  </defs>
+
+  <rect x="-1" y="15" width="17" height="1" fill="#000000" opacity="0.5"/>
+
+  <!-- Question mark on right when looking right -->
+  <g class="question" fill="#5DBF7E">
+    <rect x="13" y="-3" width="2" height="0.6"/>
+    <rect x="14" y="-2.4" width="0.6" height="1.4"/>
+    <rect x="13.4" y="-1" width="0.6" height="1"/>
+    <rect x="13.4" y="0.5" width="0.6" height="0.6"/>
+  </g>
+
+  <g fill="#A47148">
+    <rect x="2"  y="11" width="2" height="4"/>
+    <rect x="5"  y="12" width="1" height="3"/>
+    <rect x="9"  y="12" width="1" height="3"/>
+    <rect x="11" y="11" width="2" height="4"/>
+  </g>
+
+  <g class="breathe-anim">
+    <g fill="#A47148">
+      <rect x="2" y="3"  width="2" height="3"/>
+      <rect x="3" y="1"  width="2" height="2"/>
+      <rect x="3" y="-1" width="2" height="2"/>
+    </g>
+
+    <rect x="13" y="7" width="2" height="2" fill="#A47148"/>
+
+    <g class="head-turn">
+      <rect x="2" y="5" width="11" height="7" fill="#A47148"/>
+
+      <g fill="#6B4A2D">
+        <rect x="2" y="8"  width="11" height="0.4"/>
+        <rect x="6" y="5"  width="0.4" height="3"/>
+        <rect x="9" y="8.4" width="0.4" height="3.6"/>
+      </g>
+
+      <g fill="#C49A6C">
+        <rect x="3"  y="5" width="2" height="1"/>
+        <rect x="8"  y="5" width="2" height="1"/>
+      </g>
+
+      <g class="crystal-glow" fill="#5DBF7E">
+        <rect x="4"  y="6"  width="1" height="1"/>
+        <rect x="10" y="6"  width="1" height="1"/>
+        <rect x="6"  y="10" width="2" height="1"/>
+      </g>
+
+      <g class="eyes-look" fill="#1A1A1A">
+        <rect x="4"  y="8" width="1" height="2"/>
+        <rect x="10" y="8" width="1" height="2"/>
+      </g>
+    </g>
+  </g>
+</svg>
