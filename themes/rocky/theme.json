@@ -67,8 +67,8 @@
   },
 
   "hitBoxes": {
-    "default": { "x": -2, "y": 3, "width": 19, "height": 14 },
-    "sleeping": { "x": -2, "y": 9, "width": 19, "height": 7 }
+    "default": { "x": -2, "y": 3, "w": 19, "h": 14 },
+    "sleeping": { "x": -2, "y": 9, "w": 19, "h": 7 }
   },
 
   "sleepingHitboxFiles": ["rocky-sleeping.svg"],
