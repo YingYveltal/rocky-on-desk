@@ -16,6 +16,11 @@ function isAbsoluteCommandToken(token) {
  * then renames into place so concurrent readers never see a half-written
  * config. Creates the parent directory if missing. Cleans up the tmp file
  * on failure before re-throwing.
+ *
+ * Windows-safe: retries the final rename when the destination is briefly
+ * locked by another process (Claude Code's settings.json watcher commonly
+ * holds the file open for a few ms after it writes). EPERM/EBUSY/EACCES
+ * are treated as transient; everything else fails fast.
  */
 function writeJsonAtomic(filePath, data) {
   const dir = path.dirname(filePath);
@@ -24,7 +29,7 @@ function writeJsonAtomic(filePath, data) {
   fs.mkdirSync(dir, { recursive: true });
   try {
     fs.writeFileSync(tmpPath, JSON.stringify(data, null, 2), "utf-8");
-    fs.renameSync(tmpPath, filePath);
+    _renameWithRetrySync(tmpPath, filePath);
   } catch (err) {
     try { fs.unlinkSync(tmpPath); } catch {}
     throw err;
@@ -38,11 +43,51 @@ async function writeJsonAtomicAsync(filePath, data) {
   await fs.promises.mkdir(dir, { recursive: true });
   try {
     await fs.promises.writeFile(tmpPath, JSON.stringify(data, null, 2), "utf-8");
-    await fs.promises.rename(tmpPath, filePath);
+    await _renameWithRetryAsync(tmpPath, filePath);
   } catch (err) {
     try { await fs.promises.unlink(tmpPath); } catch {}
     throw err;
   }
+}
+
+// Windows file-lock contention: rename can fail with EPERM/EBUSY/EACCES if the
+// destination is briefly held open. Retry with exponential backoff totalling
+// ~750ms before giving up. Other error codes propagate immediately.
+const _RENAME_RETRY_DELAYS_MS = [50, 100, 150, 200, 250];
+
+function _renameWithRetrySync(tmpPath, filePath) {
+  let lastErr = null;
+  for (let attempt = 0; attempt <= _RENAME_RETRY_DELAYS_MS.length; attempt++) {
+    try {
+      fs.renameSync(tmpPath, filePath);
+      return;
+    } catch (err) {
+      lastErr = err;
+      if (!_isTransientLockError(err) || attempt === _RENAME_RETRY_DELAYS_MS.length) throw err;
+      const target = Date.now() + _RENAME_RETRY_DELAYS_MS[attempt];
+      while (Date.now() < target) { /* sync busy-wait, ms-scale */ }
+    }
+  }
+  throw lastErr;
+}
+
+async function _renameWithRetryAsync(tmpPath, filePath) {
+  let lastErr = null;
+  for (let attempt = 0; attempt <= _RENAME_RETRY_DELAYS_MS.length; attempt++) {
+    try {
+      await fs.promises.rename(tmpPath, filePath);
+      return;
+    } catch (err) {
+      lastErr = err;
+      if (!_isTransientLockError(err) || attempt === _RENAME_RETRY_DELAYS_MS.length) throw err;
+      await new Promise(r => setTimeout(r, _RENAME_RETRY_DELAYS_MS[attempt]));
+    }
+  }
+  throw lastErr;
+}
+
+function _isTransientLockError(err) {
+  return err && (err.code === "EPERM" || err.code === "EBUSY" || err.code === "EACCES");
 }
 
 /**

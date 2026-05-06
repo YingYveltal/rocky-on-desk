@@ -1986,17 +1986,18 @@ function getSoundUrl(soundName) {
   const filename = activeTheme.sounds[soundName];
   if (!filename) return null;
 
-  const absPath = activeTheme._builtin
-    ? path.join(assetsSoundsDir, filename)
-    : path.join(activeTheme._themeDir, "sounds", filename);
-
-  if (fs.existsSync(absPath)) return pathToFileURL(absPath).href;
-
-  // Fallback to built-in sounds for external themes that inherit defaults
-  if (!activeTheme._builtin) {
-    const fallback = path.join(assetsSoundsDir, filename);
-    if (fs.existsSync(fallback)) return pathToFileURL(fallback).href;
+  // Try theme-local sounds/ first (works for both builtin and external themes).
+  // This lets each built-in theme ship its own custom sounds (e.g. rocky has
+  // "Sad Sad Sad" for error, separate from clawd's defaults) instead of being
+  // forced to share the global assets/sounds/ pool.
+  if (activeTheme._themeDir) {
+    const themeLocal = path.join(activeTheme._themeDir, "sounds", filename);
+    if (fs.existsSync(themeLocal)) return pathToFileURL(themeLocal).href;
   }
+
+  // Fall back to the shared built-in sounds pool (assets/sounds/).
+  const fallback = path.join(assetsSoundsDir, filename);
+  if (fs.existsSync(fallback)) return pathToFileURL(fallback).href;
 
   return null;
 }
