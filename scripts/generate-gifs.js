@@ -6,9 +6,10 @@ const path = require("path");
 const { PNG } = require("pngjs");
 const GIFEncoder = require("gif-encoder-2");
 
-const THEME_DIR = path.resolve(__dirname, "..", "themes", "rocky");
+const themeName = process.argv[2] || "rocky";
+const THEME_DIR = path.resolve(__dirname, "..", "themes", themeName);
 const ASSETS_DIR = path.join(THEME_DIR, "assets");
-const OUT_DIR = path.join(__dirname, "..", "assets", "gif");
+const OUT_DIR = path.join(__dirname, "..", "assets", "gif", themeName);
 
 const W = 160, H = 160, SCALE = 2;
 const FRAMES = 24, DELAY = 100; // ms

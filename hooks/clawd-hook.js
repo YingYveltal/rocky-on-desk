@@ -124,26 +124,78 @@ const EVENT_TO_STATE = {
   Stop: "attention",
   StopFailure: "error",
   SubagentStart: "juggling",
-  SubagentStop: "working",
+  SubagentStop: "attention",
   PreCompact: "sweeping",
   PostCompact: "attention",
   Notification: "notification",
   // PermissionRequest is handled by HTTP hook (blocking) — not command hook
   Elicitation: "notification",
   WorktreeCreate: "carrying",
+  WorktreeRemove: "sweeping",
 };
 
+// PreToolUse: tool_name → richer state so Rocky reacts differently per tool type
+const PRETOOL_TOOL_STATE = {
+  Read: "thinking",
+  WebFetch: "thinking",
+  WebSearch: "thinking",
+  Glob: "thinking",
+  Grep: "thinking",
+  Agent: "juggling",
+  Task: "juggling",
+  TaskCreate: "juggling",
+  EnterPlanMode: "thinking",
+  ExitPlanMode: "attention",
+};
+
+// PostToolUse: probabilistic sprinkle of rarely-triggered animations
+// so every state gets occasional screen time
+const POSTTOOL_STATE_SPRINKLES = [
+  { state: "carrying",  probability: 0.10 },
+  { state: "sweeping",  probability: 0.05 },
+  // remaining 85% → stays "working"
+];
+
+function resolveState(event, payload) {
+  const base = EVENT_TO_STATE[event];
+  if (!base) return null;
+
+  // /clear triggers SessionEnd → SessionStart in quick succession;
+  // show sweeping (clearing context) instead of sleeping
+  if (event === "SessionEnd" && (payload.source || payload.reason || "") === "clear") {
+    return "sweeping";
+  }
+
+  // PreToolUse: differentiate by tool_name so Rocky reacts appropriately
+  if (event === "PreToolUse") {
+    const toolName = typeof payload.tool_name === "string" ? payload.tool_name : "";
+    if (PRETOOL_TOOL_STATE[toolName]) return PRETOOL_TOOL_STATE[toolName];
+    return base;
+  }
+
+  // PostToolUse: probabilistic sprinkle of rarely-seen animations
+  if (event === "PostToolUse") {
+    const roll = Math.random();
+    let cumulative = 0;
+    for (const s of POSTTOOL_STATE_SPRINKLES) {
+      cumulative += s.probability;
+      if (roll < cumulative) return s.state;
+    }
+    return base;
+  }
+
+  return base;
+}
+
 function buildStateBody(event, payload, resolve) {
-  const state = EVENT_TO_STATE[event];
+  const state = resolveState(event, payload);
   if (!state) return null;
 
   const sessionId = payload.session_id || "default";
   const cwd = payload.cwd || "";
   const source = payload.source || payload.reason || "";
 
-  // /clear triggers SessionEnd → SessionStart in quick succession;
-  // show sweeping (clearing context) instead of sleeping
-  const resolvedState = (event === "SessionEnd" && source === "clear") ? "sweeping" : state;
+  const resolvedState = state;
 
   const body = { state: resolvedState, session_id: sessionId, event };
   body.agent_id = "claude-code";
@@ -218,4 +270,4 @@ function main() {
 
 if (require.main === module) main();
 
-module.exports = { buildStateBody, extractSessionTitleFromTranscript };
+module.exports = { buildStateBody, extractSessionTitleFromTranscript, resolveState };

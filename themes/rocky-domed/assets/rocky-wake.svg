@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-15 -25 45 45" width="500" height="500">
+  <defs>
+    <style>
+      .wake-rise {
+        transform-origin: 7.5px 15px;
+        animation: rise 1.5s 1 ease-out;
+      }
+      .arm-raise {
+        transform-origin: 4px 5px;
+        animation: raise-arm 1.5s 1 ease-out;
+      }
+      .eye-open {
+        animation: blink-open 1.5s 1 ease-out;
+      }
+      .crystal-light {
+        animation: crystal-on 1.5s 1 ease-out;
+      }
+      .spark { opacity: 0; animation: spark-flash 1.5s 1 ease-out; }
+      .s1 { animation-delay: 0.3s; }
+      .s2 { animation-delay: 0.6s; }
+      .s3 { animation-delay: 0.9s; }
+
+      @keyframes rise {
+        0%   { transform: translateY(3px) scaleY(0.55) scaleX(1.15); }
+        50%  { transform: translateY(0)   scaleY(1.05) scaleX(0.97); }
+        100% { transform: translateY(0)   scaleY(1)    scaleX(1); }
+      }
+      @keyframes raise-arm {
+        0%   { transform: rotate(70deg) translate(2px, 4px); }
+        70%  { transform: rotate(-8deg); }
+        100% { transform: rotate(0deg); }
+      }
+      @keyframes blink-open {
+        0%, 35% { transform: scaleY(0.1); }
+        50%, 100% { transform: scaleY(1); }
+      }
+      @keyframes crystal-on {
+        0%, 30% { opacity: 0.3; }
+        100%    { opacity: 1; }
+      }
+      @keyframes spark-flash {
+        0%, 100% { opacity: 0; transform: scale(0.5); }
+        50%      { opacity: 1; transform: scale(1); }
+      }
+    </style>
+  </defs>
+
+  <rect x="-1" y="15" width="17" height="1" fill="#000000" opacity="0.5"/>
+
+  <!-- Awakening sparks -->
+  <g fill="#FFE699">
+    <rect class="spark s1" x="0"  y="3" width="1" height="1"/>
+    <rect class="spark s2" x="14" y="5" width="1" height="1"/>
+    <rect class="spark s3" x="7"  y="-2" width="1" height="1"/>
+  </g>
+
+  <g class="wake-rise">
+    <g fill="#A47148">
+      <rect x="2"  y="11" width="2" height="3"/>
+      <rect x="5"  y="12" width="1" height="2"/>
+      <rect x="9"  y="12" width="1" height="2"/>
+      <rect x="11" y="11" width="2" height="3"/>
+    </g>
+
+    <g class="arm-raise">
+      <g fill="#A47148">
+        <rect x="2" y="3"  width="2" height="3"/>
+        <rect x="3" y="1"  width="2" height="2"/>
+        <rect x="3" y="-1" width="2" height="2"/>
+      </g>
+    </g>
+
+    <rect x="13" y="7" width="2" height="2" fill="#A47148"/>
+    <rect x="2" y="5" width="11" height="7" fill="#A47148"/>
+
+    <g fill="#6B4A2D">
+      <rect x="2" y="8" width="11" height="0.4"/>
+      <rect x="6" y="5" width="0.4" height="3"/>
+      <rect x="9" y="8.4" width="0.4" height="3.6"/>
+    </g>
+
+    <g fill="#C49A6C">
+      <rect x="3"  y="5" width="2" height="1"/>
+      <rect x="8"  y="5" width="2" height="1"/>
+    </g>
+
+    <g class="crystal-light" fill="#5DBF7E">
+      <rect x="4"  y="6"  width="1" height="1"/>
+      <rect x="10" y="6"  width="1" height="1"/>
+      <rect x="6"  y="10" width="2" height="1"/>
+      <rect x="3"  y="11" width="1" height="1"/>
+    </g>
+
+    <g class="eye-open" style="transform-origin: 7.5px 9px;" fill="#1A1A1A">
+      <rect x="4"  y="8" width="1" height="2"/>
+      <rect x="10" y="8" width="1" height="2"/>
+    </g>
+  </g>
+
+  <!-- ====== Xenonite glass dome (12-panel dodecahedron, face-on) ====== -->
+  <g id="rocky-dome">
+    <style>
+      .dome-pulse   { animation: dome-pulse 3.5s infinite ease-in-out; }
+      .dome-flash-a { animation: dome-flash 5s infinite ease-in-out; }
+      .dome-flash-b { animation: dome-flash 5s infinite ease-in-out; animation-delay: 2.5s; }
+      @keyframes dome-pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 0.7; } }
+      @keyframes dome-flash {
+        0%, 100% { opacity: 0; }
+        10%, 18% { opacity: 0.85; }
+        28%      { opacity: 0; }
+      }
+    </style>
+    <polygon points="10.9,-5.5 16.4,-1.5 18.5,5 16.4,11.5 10.9,15.5 4.1,15.5 -1.4,11.5 -3.5,5 -1.4,-1.5 4.1,-5.5"
+             fill="#9FD8E8" fill-opacity="0.07"/>
+    <g stroke="#7A95A8" stroke-width="0.3" stroke-opacity="0.65" fill="none">
+      <line x1="7.5"  y1="0.5" x2="7.5"  y2="-5.5"/>
+      <line x1="11.8" y1="3.6" x2="16.4" y2="-1.5"/>
+      <line x1="10.1" y1="8.6" x2="16.4" y2="11.5"/>
+      <line x1="4.9"  y1="8.6" x2="-1.4" y2="11.5"/>
+      <line x1="3.2"  y1="3.6" x2="-1.4" y2="-1.5"/>
+    </g>
+    <polygon points="7.5,0.5 11.8,3.6 10.1,8.6 4.9,8.6 3.2,3.6"
+             fill="none" stroke="#5A7080" stroke-width="0.35" stroke-opacity="0.75"/>
+    <polygon points="10.9,-5.5 16.4,-1.5 18.5,5 16.4,11.5 10.9,15.5 4.1,15.5 -1.4,11.5 -3.5,5 -1.4,-1.5 4.1,-5.5"
+             fill="none" stroke="#3A4A55" stroke-width="0.55" stroke-opacity="0.95"/>
+    <g fill="#1A2530">
+      <rect x="10.6" y="-5.8" width="0.6" height="0.6"/>
+      <rect x="16.1" y="-1.8" width="0.6" height="0.6"/>
+      <rect x="18.2" y="4.7"  width="0.6" height="0.6"/>
+      <rect x="16.1" y="11.2" width="0.6" height="0.6"/>
+      <rect x="10.6" y="15.2" width="0.6" height="0.6"/>
+      <rect x="3.8"  y="15.2" width="0.6" height="0.6"/>
+      <rect x="-1.7" y="11.2" width="0.6" height="0.6"/>
+      <rect x="-3.8" y="4.7"  width="0.6" height="0.6"/>
+      <rect x="-1.7" y="-1.8" width="0.6" height="0.6"/>
+      <rect x="3.8"  y="-5.8" width="0.6" height="0.6"/>
+    </g>
+    <g fill="#1A2530">
+      <rect x="7.25"  y="0.25" width="0.5" height="0.5"/>
+      <rect x="11.55" y="3.35" width="0.5" height="0.5"/>
+      <rect x="9.85"  y="8.35" width="0.5" height="0.5"/>
+      <rect x="4.65"  y="8.35" width="0.5" height="0.5"/>
+      <rect x="2.95"  y="3.35" width="0.5" height="0.5"/>
+    </g>
+    <polygon class="dome-pulse" points="4.1,-5.5 -3.5,5 -1.5,5 5,-4" fill="#FFFFFF" fill-opacity="0.18"/>
+    <rect class="dome-pulse" x="6.5" y="-6" width="2" height="0.5" fill="#FFFFFF" opacity="0.85"/>
+    <rect class="dome-flash-a" x="1" y="-3" width="0.5" height="1.5" fill="#FFFFFF"/>
+    <rect class="dome-flash-b" x="14" y="3" width="1.5" height="0.5" fill="#FFFFFF"/>
+  </g>
+</svg>

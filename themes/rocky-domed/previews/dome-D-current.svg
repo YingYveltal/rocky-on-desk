@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-15 -25 45 45" width="500" height="500">
+  <rect x="-15" y="-25" width="45" height="45" fill="#F8F4ED"/>
+  <text x="7.5" y="-22" text-anchor="middle" font-family="monospace" font-size="2.6" font-weight="700" fill="#2C3640">D. Octagon · current version</text>
+  <text x="7.5" y="-19" text-anchor="middle" font-family="monospace" font-size="1.8" fill="#5A6B7A">8-side outline · 4 internal lines · for reference</text>
+
+  <rect x="-1" y="15" width="17" height="1" fill="#000000" opacity="0.5"/>
+
+  <g fill="#A47148">
+    <rect x="2"  y="11" width="2" height="4"/>
+    <rect x="5"  y="12" width="1" height="3"/>
+    <rect x="9"  y="12" width="1" height="3"/>
+    <rect x="11" y="11" width="2" height="4"/>
+  </g>
+  <g fill="#6B4A2D">
+    <rect x="2"  y="14" width="2" height="1"/>
+    <rect x="11" y="14" width="2" height="1"/>
+  </g>
+  <g fill="#A47148">
+    <rect x="2" y="3"  width="2" height="3"/>
+    <rect x="3" y="1"  width="2" height="2"/>
+    <rect x="3" y="-1" width="2" height="2"/>
+  </g>
+  <rect x="13" y="7" width="2" height="2" fill="#A47148"/>
+  <rect x="2" y="5" width="11" height="7" fill="#A47148"/>
+  <g fill="#6B4A2D">
+    <rect x="2" y="8"  width="11" height="0.4"/>
+    <rect x="6" y="5"  width="0.4" height="3"/>
+    <rect x="9" y="8.4" width="0.4" height="3.6"/>
+  </g>
+  <g fill="#C49A6C">
+    <rect x="3"  y="5" width="2" height="1"/>
+    <rect x="8"  y="5" width="2" height="1"/>
+    <rect x="11" y="5" width="1" height="1"/>
+  </g>
+  <g fill="#5DBF7E">
+    <rect x="4"  y="6"  width="1" height="1"/>
+    <rect x="10" y="6"  width="1" height="1"/>
+    <rect x="6"  y="10" width="2" height="1"/>
+    <rect x="3"  y="11" width="1" height="1"/>
+  </g>
+  <g fill="#2E7D5C">
+    <rect x="4"  y="7"  width="1" height="0.4"/>
+    <rect x="6"  y="11" width="2" height="0.4"/>
+  </g>
+  <g fill="#1A1A1A">
+    <rect x="4"  y="8" width="1" height="2"/>
+    <rect x="10" y="8" width="1" height="2"/>
+  </g>
+
+  <!-- DOME OPTION D: Current octagonal version (for comparison) -->
+  <g id="dome">
+    <polygon points="3,-8 12,-8 18,-2 18,12 13,16 2,16 -3,12 -3,-2" fill="#9FD8E8" fill-opacity="0.06"/>
+    <g stroke="#7FCFE8" stroke-width="0.18" stroke-opacity="0.45" fill="none">
+      <line x1="7.5" y1="-8" x2="7.5" y2="16"/>
+      <line x1="-3"  y1="4"  x2="18"  y2="4"/>
+      <line x1="-3"  y1="-2" x2="18"  y2="12"/>
+      <line x1="18"  y1="-2" x2="-3"  y2="12"/>
+    </g>
+    <polygon points="3,-8 12,-8 18,-2 18,12 13,16 2,16 -3,12 -3,-2" fill="none" stroke="#7FCFE8" stroke-width="0.4" stroke-opacity="0.75"/>
+    <polygon points="3,-8 -3,-2 -3,2 6,-6" fill="#E8F8FF" fill-opacity="0.5"/>
+    <rect x="6.5" y="-8.4" width="2" height="0.6" fill="#FFFFFF" opacity="0.9"/>
+    <rect x="-4" y="15.7" width="23" height="0.6" fill="#5A6B7A" fill-opacity="0.55"/>
+    <rect x="-4" y="16.1" width="23" height="0.3" fill="#2C3640" fill-opacity="0.7"/>
+  </g>
+</svg>

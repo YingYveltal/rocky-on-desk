@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Rocky 玻璃罩 — 4 版对比</title>
+<style>
+  body {
+    margin: 0; padding: 24px;
+    background: #2C3640; color: #E8F4F8;
+    font-family: -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+  }
+  h1 { font-size: 18px; margin: 0 0 6px; }
+  .sub { color: #9FB5C5; font-size: 13px; margin-bottom: 24px; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    max-width: 1200px;
+  }
+  .card {
+    background: #F8F4ED;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+  }
+  .card img {
+    display: block;
+    width: 100%;
+    height: auto;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+  }
+  .label {
+    padding: 10px 14px;
+    background: #1A2530;
+    color: #E8F4F8;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .label b { color: #5DBF7E; font-size: 14px; }
+  .label .pro  { color: #FFD27A; }
+  .label .con  { color: #FF9F8A; }
+</style>
+</head>
+<body>
+  <h1>Rocky 玻璃罩设计 — 4 版对比</h1>
+  <div class="sub">原型参考：Project Hail Mary / 挽救计划 — 正十二面体 xenonite 大气舱（12 块五边形面板）</div>
+
+  <div class="grid">
+    <div class="card">
+      <img src="dome-A-decagon.svg" alt="A">
+      <div class="label">
+        <b>A. 十边形正面投影</b><br>
+        正十二面体面对镜头时的几何精确投影：外轮廓为正十边形，正中央显示一块完整的五边形（面对你的那一面），5 条辐条向外连到十边形顶点，自然分割出 5 块梯形侧面板。<br>
+        <span class="pro">优：</span>几何最规整，"教科书式"正十二面体识别度最高。<br>
+        <span class="con">欠：</span>稍偏理性，少一点重量感。
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="dome-B-belljar.svg" alt="B">
+      <div class="label">
+        <b>B. 钟罩 / 实验玻璃罩</b><br>
+        弯曲多边形顶 + 5 条立柱 + 顶部金属顶针 + 厚重金属底环+ 8 颗铆钉。整体感觉像维多利亚时代的实验室钟形玻璃罩。<br>
+        <span class="pro">优：</span>"装着标本/外星人"的视觉隐喻最强，有手工质感。<br>
+        <span class="con">欠：</span>偏离原著的"正十二面体"几何描述。
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="dome-C-detailed.svg" alt="C">
+      <div class="label">
+        <b>C. 立体阴影正十二面体（推荐）</b><br>
+        在 A 的基础上，给 5 块侧面板涂不同明暗（左上最亮、右下最暗），加大铆钉 + 铆钉高光 + 上沿金属反光 + 三层底环。骨架更粗黑、节点更可见。<br>
+        <span class="pro">优：</span>原著几何 + 真实立体感，机械工业质感最足。<br>
+        <span class="con">欠：</span>骨架可能稍显抢戏，需平衡。
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="dome-D-current.svg" alt="D">
+      <div class="label">
+        <b>D. 当前八边形版（参考用）</b><br>
+        现在仓库里的版本：八边形外轮廓 + 4 条对角辅助线 + 半透青色描边。<br>
+        <span class="pro">优：</span>简洁。<br>
+        <span class="con">欠：</span>不能立刻让人识别"正十二面体"，几何特征不明显。
+      </div>
+    </div>
+  </div>
+</body>
+</html>
