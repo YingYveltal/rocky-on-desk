@@ -51,9 +51,15 @@ async function writeJsonAtomicAsync(filePath, data) {
 }
 
 // Windows file-lock contention: rename can fail with EPERM/EBUSY/EACCES if the
-// destination is briefly held open. Retry with exponential backoff totalling
-// ~750ms before giving up. Other error codes propagate immediately.
-const _RENAME_RETRY_DELAYS_MS = [50, 100, 150, 200, 250];
+// destination is briefly held open. Strategy:
+//   1. Try rename (fast path, atomic)
+//   2. If transient lock error, retry with exponential backoff totalling ~5s
+//      (long enough to outlast Claude Code's settings.json watcher reads)
+//   3. If still failing, try unlink-then-rename (some Windows AV / watchers
+//      release the file briefly between syscalls)
+//   4. Re-throw the original error if both strategies exhausted.
+// Other error codes (ENOENT, EISDIR, etc.) propagate immediately.
+const _RENAME_RETRY_DELAYS_MS = [50, 100, 150, 200, 300, 400, 500, 700, 900, 1200, 1500];
 
 function _renameWithRetrySync(tmpPath, filePath) {
   let lastErr = null;
@@ -63,12 +69,22 @@ function _renameWithRetrySync(tmpPath, filePath) {
       return;
     } catch (err) {
       lastErr = err;
-      if (!_isTransientLockError(err) || attempt === _RENAME_RETRY_DELAYS_MS.length) throw err;
+      if (!_isTransientLockError(err)) throw err;
+      if (attempt === _RENAME_RETRY_DELAYS_MS.length) break;
       const target = Date.now() + _RENAME_RETRY_DELAYS_MS[attempt];
       while (Date.now() < target) { /* sync busy-wait, ms-scale */ }
     }
   }
-  throw lastErr;
+  // Fallback: unlink + rename. Some Windows file-watcher patterns (notably
+  // antivirus + IDE config-watchers) release the file briefly between calls.
+  try {
+    if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
+    fs.renameSync(tmpPath, filePath);
+    return;
+  } catch (fallbackErr) {
+    // Surface the original retry error since it's more diagnostic
+    throw lastErr || fallbackErr;
+  }
 }
 
 async function _renameWithRetryAsync(tmpPath, filePath) {
@@ -79,11 +95,18 @@ async function _renameWithRetryAsync(tmpPath, filePath) {
       return;
     } catch (err) {
       lastErr = err;
-      if (!_isTransientLockError(err) || attempt === _RENAME_RETRY_DELAYS_MS.length) throw err;
+      if (!_isTransientLockError(err)) throw err;
+      if (attempt === _RENAME_RETRY_DELAYS_MS.length) break;
       await new Promise(r => setTimeout(r, _RENAME_RETRY_DELAYS_MS[attempt]));
     }
   }
-  throw lastErr;
+  try {
+    try { await fs.promises.unlink(filePath); } catch {}
+    await fs.promises.rename(tmpPath, filePath);
+    return;
+  } catch (fallbackErr) {
+    throw lastErr || fallbackErr;
+  }
 }
 
 function _isTransientLockError(err) {
