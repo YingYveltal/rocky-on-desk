@@ -1,0 +1,50 @@
+const { describe, it } = require("node:test");
+const assert = require("node:assert");
+const fs = require("node:fs");
+const path = require("node:path");
+
+const bubbleHtml = fs.readFileSync(path.join(__dirname, "..", "src", "bubble.html"), "utf8");
+
+describe("AskUserQuestion bubble Other option", () => {
+  it("defines Other copy and textarea placeholders for all supported bubble locales", () => {
+    assert.match(bubbleHtml, /other: "Other",/);
+    assert.match(bubbleHtml, /otherPlaceholder: "Type your answer…",/);
+    assert.match(bubbleHtml, /other: "\\u5176\\u4ED6",/);
+    assert.match(bubbleHtml, /otherPlaceholder: "\\u8F93\\u5165\\u4F60\\u7684\\u56DE\\u7B54\\u2026",/);
+    assert.match(bubbleHtml, /other: "\\uAE30\\uD0C0",/);
+    assert.match(bubbleHtml, /otherPlaceholder: "\\uC9C1\\uC811 \\uC785\\uB825\\u2026",/);
+    assert.match(bubbleHtml, /other: "その他",/);
+    assert.match(bubbleHtml, /otherPlaceholder: "回答を入力…",/);
+  });
+
+  it("renders a client-side Other option with a folding textarea", () => {
+    assert.match(bubbleHtml, /\.option-item-other \{ align-items: center; \}/);
+    assert.match(bubbleHtml, /\.option-item-textarea \{/);
+    assert.match(bubbleHtml, /const otherInput = document\.createElement\("input"\);/);
+    assert.match(bubbleHtml, /otherInput\.setAttribute\("data-other", "true"\);/);
+    assert.match(bubbleHtml, /const otherTextarea = document\.createElement\("textarea"\);/);
+    assert.match(bubbleHtml, /otherTextarea\.setAttribute\("data-other-textarea", "true"\);/);
+    assert.match(bubbleHtml, /otherTextarea\.addEventListener\("input", \(\) => \{/);
+    assert.match(bubbleHtml, /ensureElicitationAnswer\(questionIndex\)\.otherText = otherTextarea\.value;/);
+  });
+
+  it("requires non-empty custom text when Other is selected and disables textareas during submit", () => {
+    assert.match(bubbleHtml, /const ELICITATION_OTHER_KEY = "__other__";/);
+    assert.match(bubbleHtml, /if \(optionKey === ELICITATION_OTHER_KEY\) \{/);
+    assert.match(bubbleHtml, /const otherText = answer\.otherText\.trim\(\);/);
+    assert.match(bubbleHtml, /if \(!otherText\) return "";/);
+    assert.match(bubbleHtml, /for \(const el of elicitationForm\.querySelectorAll\("input, textarea, button"\)\) el\.disabled = true;/);
+  });
+
+  it("keeps Other arrow navigation narrow and avoids checkbox toggles", () => {
+    assert.match(bubbleHtml, /if \(e\.key === "ArrowUp" && !e\.shiftKey && !e\.isComposing\) \{/);
+    assert.match(bubbleHtml, /const shouldEscape = isEmpty \|\| atStart;/);
+    assert.match(bubbleHtml, /if \(!question\.multiSelect\) target\.click\(\);/);
+    assert.match(
+      bubbleHtml,
+      /otherInput\.addEventListener\("keydown", \(e\) => \{[\s\S]*?e\.key === "ArrowDown"[\s\S]*?ta\.focus\(\);/
+    );
+    assert.doesNotMatch(bubbleHtml, /if \(target\) \{ target\.focus\(\); target\.click\(\); \}/);
+    assert.doesNotMatch(bubbleHtml, /const atEnd = otherTextarea\.selectionStart === otherTextarea\.value\.length/);
+  });
+});
