@@ -452,11 +452,18 @@ function applyState(state, svgOverride) {
   stateChangedAt = Date.now();
   ctx.idlePaused = false;
 
-  // Sound triggers
+  // Sound triggers — fire on transition INTO each state.
+  // Global 10s cooldown in playSound() prevents spam.
   if (state === "attention" || state === "mini-happy") {
     ctx.playSound("complete");
   } else if (state === "notification" || state === "mini-alert") {
     ctx.playSound("confirm");
+  } else if (state === "error") {
+    ctx.playSound("error");
+  } else if (state === "thinking") {
+    ctx.playSound("thinking");
+  } else if (state === "waking") {
+    ctx.playSound("waking");
   }
 
   const svg = svgOverride || resolveVisualBinding(state);

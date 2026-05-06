@@ -106,6 +106,13 @@
     "drag":       { "file": "rocky-react-drag.svg" },
     "double":     { "files": ["rocky-react-double.svg"], "duration": 3500 }
   },
+  "sounds": {
+    "complete": "complete.wav",
+    "confirm":  "confirm.wav",
+    "error":    "error.wav",
+    "thinking": "thinking.wav",
+    "waking":   "waking.wav"
+  },
   "miniMode": {
     "supported": false
   },
