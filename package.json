@@ -1,7 +1,7 @@
 {
-  "name": "clawd-on-desk",
+  "name": "rocky-on-desk",
   "version": "0.7.0",
-  "description": "A desktop pet that reacts to your Claude Code sessions in real-time.",
+  "description": "Rocky on Desk — a pixel-art desktop pet of Rocky the Eridian engineer from Project Hail Mary, built on clawd-on-desk.",
   "main": "src/main.js",
   "scripts": {
     "start": "node launch.js",
@@ -36,8 +36,8 @@
   "license": "AGPL-3.0-only",
   "type": "commonjs",
   "build": {
-    "appId": "com.clawd.on-desk",
-    "productName": "Clawd on Desk",
+    "appId": "com.rocky.on-desk",
+    "productName": "Rocky on Desk",
     "protocols": [
       {
         "name": "Clawd Import Protocol",
@@ -131,8 +131,8 @@
     "publish": [
       {
         "provider": "github",
-        "owner": "rullerzhou-afk",
-        "repo": "clawd-on-desk"
+        "owner": "YingYveltal",
+        "repo": "rocky-on-desk"
       }
     ]
   },

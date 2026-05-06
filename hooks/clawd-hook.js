@@ -130,7 +130,6 @@ const EVENT_TO_STATE = {
   Notification: "notification",
   // PermissionRequest is handled by HTTP hook (blocking) — not command hook
   Elicitation: "notification",
-  WorktreeCreate: "carrying",
   WorktreeRemove: "sweeping",
 };
 
