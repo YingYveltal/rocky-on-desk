@@ -4252,7 +4252,7 @@ function createWindow() {
     hasShadow: false,
     fullscreenable: false,
     enableLargerThanScreen: true,
-    ...(isLinux ? { type: LINUX_WINDOW_TYPE } : {}),
+    ...(isLinux ? { type: "normal" } : {}),
     ...(isMac ? { type: "panel", roundedCorners: false } : {}),
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
@@ -4329,7 +4329,7 @@ function createWindow() {
       hasShadow: false,
       fullscreenable: false,
       enableLargerThanScreen: true,
-      ...(isLinux ? { type: LINUX_WINDOW_TYPE } : {}),
+      ...(isLinux ? { type: "normal" } : {}),
       ...(isMac ? { type: "panel", roundedCorners: false } : {}),
       focusable: !isLinux,  // KEY EXPERIMENT: allow activation to avoid WS_EX_NOACTIVATE input routing bugs (Windows-only issue)
       webPreferences: {
