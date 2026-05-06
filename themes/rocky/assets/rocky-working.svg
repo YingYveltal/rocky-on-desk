@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-15 -25 45 45" width="500" height="500">
+  <style>
+    /* Body vibration while working */
+    @keyframes vibrate {
+      0%, 100% { transform: translate(0, 0); }
+      25% { transform: translate(0.5px, -0.5px); }
+      50% { transform: translate(0, 0.5px); }
+      75% { transform: translate(-0.5px, 0); }
+    }
+    /* Leg tap left-right alternating */
+    @keyframes leg-tap-l {
+      0%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-1.5px); }
+    }
+    @keyframes leg-tap-r {
+      0%, 100% { transform: translateY(0); }
+      60% { transform: translateY(-1.5px); }
+    }
+    /* Sensor dots bright & active */
+    @keyframes active-glow {
+      0%, 100% { opacity: 0.8; }
+      50% { opacity: 1; fill: #FFEC80; }
+    }
+    .vibrate-anim {
+      animation: vibrate 0.3s ease-in-out infinite;
+    }
+    .tap-l-anim {
+      animation: leg-tap-l 0.6s ease-in-out infinite;
+    }
+    .tap-r-anim {
+      animation: leg-tap-r 0.6s ease-in-out infinite;
+    }
+    .active-glow {
+      animation: active-glow 0.6s ease-in-out infinite;
+    }
+  </style>
+
+  <!-- Shadow -->
+  <ellipse cx="7.5" cy="16" rx="9" ry="2" fill="rgba(0,0,0,0.12)"/>
+
+  <!-- Legs -->
+  <g fill="#6B5340">
+    <!-- Back left -->
+    <rect x="-2" y="13" width="2" height="1"/>
+    <rect x="-3" y="14" width="2" height="1"/>
+    <rect x="-3" y="15" width="2" height="1"/>
+    <rect x="-2" y="16" width="2" height="1"/>
+    <!-- Mid left -->
+    <rect x="0" y="10" width="2" height="1"/>
+    <rect x="-1" y="11" width="2" height="1"/>
+    <rect x="-2" y="12" width="2" height="1"/>
+    <rect x="-2" y="13" width="2" height="1"/>
+    <rect x="-2" y="14" width="2" height="1"/>
+    <rect x="-2" y="15" width="2" height="1"/>
+    <rect x="-1" y="16" width="2" height="1"/>
+    <!-- Front left - tapping -->
+    <g class="tap-l-anim">
+      <rect x="2" y="8" width="2" height="1"/>
+      <rect x="1" y="9" width="2" height="1"/>
+      <rect x="1" y="10" width="2" height="1"/>
+      <rect x="0" y="11" width="2" height="1"/>
+      <rect x="0" y="12" width="2" height="1"/>
+      <rect x="0" y="13" width="2" height="1"/>
+      <rect x="0" y="14" width="2" height="1"/>
+      <rect x="0" y="15" width="2" height="1"/>
+      <rect x="1" y="16" width="2" height="1"/>
+    </g>
+    <!-- Front right - tapping -->
+    <g class="tap-r-anim">
+      <rect x="11" y="8" width="2" height="1"/>
+      <rect x="12" y="9" width="2" height="1"/>
+      <rect x="12" y="10" width="2" height="1"/>
+      <rect x="13" y="11" width="2" height="1"/>
+      <rect x="13" y="12" width="2" height="1"/>
+      <rect x="13" y="13" width="2" height="1"/>
+      <rect x="13" y="14" width="2" height="1"/>
+      <rect x="13" y="15" width="2" height="1"/>
+      <rect x="12" y="16" width="2" height="1"/>
+    </g>
+    <!-- Back right -->
+    <rect x="14" y="13" width="2" height="1"/>
+    <rect x="15" y="14" width="2" height="1"/>
+    <rect x="15" y="15" width="2" height="1"/>
+    <rect x="14" y="16" width="2" height="1"/>
+    <!-- Center back -->
+    <rect x="6" y="9" width="2" height="1"/>
+    <rect x="6" y="10" width="2" height="1"/>
+    <rect x="6" y="11" width="2" height="1"/>
+    <rect x="6" y="12" width="2" height="1"/>
+    <rect x="6" y="13" width="2" height="1"/>
+    <rect x="6" y="14" width="2" height="1"/>
+    <rect x="7" y="15" width="2" height="1"/>
+    <rect x="7" y="16" width="2" height="1"/>
+  </g>
+
+  <!-- Body -->
+  <g class="vibrate-anim">
+    <g fill="#8B7355">
+      <rect x="5" y="-1" width="5" height="1"/>
+      <rect x="3" y="0" width="9" height="1"/>
+      <rect x="1" y="1" width="13" height="1"/>
+      <rect x="0" y="2" width="15" height="1"/>
+      <rect x="-1" y="3" width="17" height="1"/>
+      <rect x="-1" y="4" width="17" height="1"/>
+      <rect x="-1" y="5" width="17" height="1"/>
+      <rect x="0" y="6" width="15" height="1"/>
+      <rect x="1" y="7" width="13" height="1"/>
+      <rect x="3" y="8" width="9" height="1"/>
+      <rect x="5" y="9" width="5" height="1"/>
+    </g>
+    <g fill="#6B5340">
+      <rect x="3" y="2" width="2" height="1"/>
+      <rect x="10" y="2" width="2" height="1"/>
+      <rect x="2" y="3" width="1" height="2"/>
+      <rect x="12" y="3" width="1" height="1"/>
+      <rect x="6" y="4" width="2" height="2"/>
+      <rect x="9" y="5" width="1" height="1"/>
+      <rect x="2" y="6" width="2" height="1"/>
+      <rect x="11" y="6" width="1" height="1"/>
+      <rect x="5" y="7" width="1" height="1"/>
+      <rect x="9" y="7" width="1" height="1"/>
+      <rect x="6" y="8" width="2" height="1"/>
+    </g>
+    <g fill="#A0896C">
+      <rect x="6" y="0" width="2" height="1"/>
+      <rect x="4" y="1" width="2" height="1"/>
+      <rect x="5" y="3" width="1" height="1"/>
+      <rect x="8" y="3" width="3" height="1"/>
+      <rect x="7" y="5" width="2" height="1"/>
+      <rect x="4" y="6" width="1" height="1"/>
+      <rect x="7" y="7" width="1" height="1"/>
+    </g>
+    <g class="active-glow" fill="#FFD700">
+      <rect x="4" y="2" width="2" height="1"/>
+      <rect x="9" y="2" width="2" height="1"/>
+      <rect x="4" y="3" width="1" height="1"/>
+      <rect x="10" y="3" width="1" height="1"/>
+      <rect x="3" y="1" width="1" height="1" fill="#FFEC80" opacity="0.8"/>
+      <rect x="11" y="1" width="1" height="1" fill="#FFEC80" opacity="0.8"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-15 -25 45 45" width="500" height="500">
+  <style>
+    /* Slow breathing while sleeping */
+    @keyframes sleep-breathe {
+      0%, 100% { transform: translateY(0) scaleY(1); }
+      50% { transform: translateY(0) scaleY(0.95); }
+    }
+    /* Zzz bubble rise */
+    @keyframes zzz1 {
+      0% { opacity: 0; transform: translate(0, 0); }
+      20% { opacity: 1; }
+      80% { opacity: 1; }
+      100% { opacity: 0; transform: translate(3px, -6px); }
+    }
+    @keyframes zzz2 {
+      0% { opacity: 0; transform: translate(0, 0); }
+      15% { opacity: 0; }
+      30% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { opacity: 0; transform: translate(2px, -7px); }
+    }
+    @keyframes zzz3 {
+      0% { opacity: 0; transform: translate(0, 0); }
+      30% { opacity: 0; }
+      45% { opacity: 1; }
+      100% { opacity: 0; transform: translate(4px, -8px); }
+    }
+    .sleep-breathe {
+      animation: sleep-breathe 4s ease-in-out infinite;
+      transform-origin: 7.5px 8px;
+    }
+    .zzz-1 { animation: zzz1 3s ease-out infinite; }
+    .zzz-2 { animation: zzz2 3s ease-out infinite; }
+    .zzz-3 { animation: zzz3 3s ease-out infinite; }
+  </style>
+
+  <!-- Shadow: smaller & darker when sleeping -->
+  <ellipse cx="7.5" cy="16" rx="7" ry="1.5" fill="rgba(0,0,0,0.15)"/>
+
+  <!-- Legs: curled under body -->
+  <g fill="#6B5340">
+    <!-- Curled legs - shorter, closer to body -->
+    <rect x="1" y="12" width="2" height="1"/>
+    <rect x="1" y="13" width="2" height="1"/>
+    <rect x="2" y="14" width="2" height="1"/>
+    <rect x="3" y="15" width="2" height="1"/>
+    <!-- Mid left tucked -->
+    <rect x="2" y="12" width="2" height="1"/>
+    <rect x="2" y="13" width="2" height="1"/>
+    <rect x="3" y="14" width="2" height="1"/>
+    <rect x="3" y="15" width="2" height="1"/>
+    <!-- Front left tucked -->
+    <rect x="4" y="11" width="2" height="1"/>
+    <rect x="3" y="12" width="2" height="1"/>
+    <rect x="3" y="13" width="2" height="1"/>
+    <rect x="4" y="14" width="2" height="1"/>
+    <rect x="4" y="15" width="2" height="1"/>
+    <!-- Front right tucked -->
+    <rect x="9" y="11" width="2" height="1"/>
+    <rect x="10" y="12" width="2" height="1"/>
+    <rect x="10" y="13" width="2" height="1"/>
+    <rect x="9" y="14" width="2" height="1"/>
+    <rect x="9" y="15" width="2" height="1"/>
+    <!-- Back right tucked -->
+    <rect x="11" y="12" width="2" height="1"/>
+    <rect x="11" y="13" width="2" height="1"/>
+    <rect x="10" y="14" width="2" height="1"/>
+    <rect x="10" y="15" width="2" height="1"/>
+    <!-- Center tucked -->
+    <rect x="6" y="11" width="2" height="1"/>
+    <rect x="6" y="12" width="2" height="1"/>
+    <rect x="7" y="13" width="2" height="1"/>
+    <rect x="7" y="14" width="2" height="1"/>
+    <rect x="7" y="15" width="2" height="1"/>
+  </g>
+
+  <!-- Body: lowered, slightly squished -->
+  <g class="sleep-breathe">
+    <!-- Main body lowered -->
+    <g fill="#8B7355">
+      <rect x="4" y="1" width="7" height="1"/>
+      <rect x="2" y="2" width="11" height="1"/>
+      <rect x="0" y="3" width="15" height="1"/>
+      <rect x="-1" y="4" width="17" height="1"/>
+      <rect x="-1" y="5" width="17" height="1"/>
+      <rect x="-1" y="6" width="17" height="1"/>
+      <rect x="0" y="7" width="15" height="1"/>
+      <rect x="2" y="8" width="11" height="1"/>
+      <rect x="4" y="9" width="7" height="1"/>
+      <rect x="5" y="10" width="5" height="1"/>
+      <rect x="6" y="11" width="3" height="1"/>
+    </g>
+    <!-- Rock texture -->
+    <g fill="#6B5340">
+      <rect x="3" y="3" width="2" height="1"/>
+      <rect x="10" y="3" width="2" height="1"/>
+      <rect x="2" y="4" width="1" height="2"/>
+      <rect x="12" y="4" width="1" height="1"/>
+      <rect x="6" y="5" width="2" height="1"/>
+      <rect x="9" y="5" width="1" height="1"/>
+      <rect x="2" y="7" width="2" height="1"/>
+      <rect x="11" y="7" width="1" height="1"/>
+      <rect x="5" y="8" width="1" height="1"/>
+      <rect x="9" y="8" width="1" height="1"/>
+      <rect x="6" y="9" width="2" height="1"/>
+    </g>
+    <!-- Rock highlights (dim when sleeping) -->
+    <g fill="#9E8A70" opacity="0.7">
+      <rect x="5" y="2" width="2" height="1"/>
+      <rect x="4" y="4" width="1" height="1"/>
+      <rect x="7" y="5" width="2" height="1"/>
+      <rect x="4" y="6" width="1" height="1"/>
+      <rect x="7" y="7" width="1" height="1"/>
+    </g>
+    <!-- Sensor dots: off during sleep -->
+    <g fill="#555555" opacity="0.6">
+      <rect x="4" y="3" width="2" height="1"/>
+      <rect x="9" y="3" width="2" height="1"/>
+      <rect x="4" y="4" width="1" height="1"/>
+      <rect x="10" y="4" width="1" height="1"/>
+    </g>
+  </g>
+
+  <!-- Zzz sleep bubbles -->
+  <g fill="none" stroke="#8B7355" stroke-width="1" opacity="0.7">
+    <g class="zzz-1" font-family="monospace" font-size="3.5">
+      <text x="13" y="1" fill="#8B7355" stroke="none">z</text>
+    </g>
+    <g class="zzz-2" font-family="monospace" font-size="4.5">
+      <text x="14" y="-2" fill="#8B7355" stroke="none">z</text>
+    </g>
+    <g class="zzz-3" font-family="monospace" font-size="5.5">
+      <text x="15" y="-6" fill="#8B7355" stroke="none">z</text>
+    </g>
+  </g>
+</svg>
