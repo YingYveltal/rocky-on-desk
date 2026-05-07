@@ -93,6 +93,10 @@ node hooks/install.js
 
 This registers command hooks in `~/.claude/settings.json`. Restart your Claude Code session afterward. Rocky will now animate in response to tool calls, thinking, errors, and more.
 
+> **WSL users**: If you run `claude` inside WSL (which invokes `claude.exe` via interop), the hook installer detects WSL automatically and writes hooks that work from both WSL and native Windows. Make sure to install hooks from **within WSL** if that's where you run Claude Code.
+
+> **tmux users**: Rocky detects Claude Code sessions inside tmux — no extra configuration needed.
+
 ### Run from Source
 
 ```bash

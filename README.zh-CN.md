@@ -93,6 +93,10 @@ node hooks/install.js
 
 这会在 `~/.claude/settings.json` 中注册命令 hooks。重启 Claude Code 会话后，Rocky 就会根据工具调用、思考、出错等状态自动切换动画。
 
+> **WSL 用户**：如果在 WSL 内运行 `claude`（实际上通过 WSL interop 调用 `claude.exe`），hook 安装器会自动检测 WSL 环境，生成同时兼容 WSL 和原生 Windows 的 hooks。请确保在**运行 Claude Code 的同一个 WSL 环境中**执行安装。
+
+> **tmux 用户**：Rocky 能自动检测 tmux 会话中的 Claude Code，无需额外配置。
+
 ### 源码运行
 
 ```bash

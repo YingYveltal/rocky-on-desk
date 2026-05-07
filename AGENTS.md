@@ -39,7 +39,7 @@ Claude Code event (PreToolUse, PostToolUse, etc.)
   → ~/.claude/settings.json hooks[] fires command hook
   → hooks/clawd-hook.js receives event + stdin JSON payload
   → maps event → state (EVENT_TO_STATE + resolveState())
-  → HTTP POST { state, session_id, tool_name, ... } to 127.0.0.1:23333/state
+  → HTTP POST { state, session_id, tool_name, ... } to <host-ip>:23333/state
   → src/server.js HTTP server receives it
   → src/state.js updateSession() updates per-session state
   → resolveDisplayState() picks highest-priority active state
@@ -96,8 +96,11 @@ Themes are auto-discovered by `theme-loader.js`. The hook/state system sends sem
 
 ## Key Constraints
 
-- HTTP server port range: `127.0.0.1:23333-23337`; runtime port written to `~/.clawd/runtime.json`
+- HTTP server binds to `0.0.0.0` on ports `23333-23337`; runtime port written to `~/.clawd/runtime.json`
+- In WSL, hook scripts use Windows host IP (from `/etc/resolv.conf`) instead of `127.0.0.1` — the WSL loopback cannot reach the Windows host server
+- PID resolution includes `tmux` and `tmux: server` in recognized terminal process names
 - Hook scripts must only depend on Node built-ins + `server-config.js`, `shared-process.js`, `json-utils.js`
+- Hook commands on Windows no longer use `shell: "powershell"` — plain `node` invocations ensure WSL compatibility
 - Registering Claude Code hooks must append, never overwrite existing user hooks
 - The `<_t>` cache-bust query param on SVG `<img>` tags must not be removed — Chromium reuses animation timelines for same-URL SVGs
 - Windows NSIS installers must produce per-architecture builds; `nsis.buildUniversalInstaller` must stay `false`
