@@ -6,6 +6,7 @@ const { EventEmitter } = require("node:events");
 
 const initServer = require("../src/server");
 const { resolveCodexOfficialHookState } = require("../src/server").__test;
+const { buildPermissionUrl } = require("../hooks/server-config");
 
 class FakeWatcher extends EventEmitter {
   constructor(callback) {
@@ -82,7 +83,7 @@ function makeServer(overrides = {}) {
       PermissionRequest: [
         {
           matcher: "",
-          hooks: [{ type: "http", url: "http://127.0.0.1:23333/permission", timeout: 600 }],
+          hooks: [{ type: "http", url: buildPermissionUrl(23333), timeout: 600 }],
         },
       ],
     },
@@ -237,7 +238,7 @@ describe("server Claude hook management", () => {
         PermissionRequest: [
           {
             matcher: "",
-            hooks: [{ type: "http", url: "http://127.0.0.1:23335/permission", timeout: 600 }],
+            hooks: [{ type: "http", url: buildPermissionUrl(23335), timeout: 600 }],
           },
         ],
       },

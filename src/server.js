@@ -857,7 +857,7 @@ function startClaudeSettingsWatcher() {
 
 // /state POST body size cap. Raised from 1024 to 4096 to give new fields
 // (session_title) headroom on top of cwd / pid_chain / host / etc. Still a
-// local-only 127.0.0.1 endpoint — not an Internet DoS concern.
+// local-only endpoint — not an Internet DoS concern.
 const MAX_STATE_BODY_BYTES = 4096;
 
 function startHttpServer() {
@@ -1392,7 +1392,7 @@ function startHttpServer() {
   httpServer.on("error", (err) => {
     if (!activeServerPort && err.code === "EADDRINUSE" && listenIndex < listenPorts.length - 1) {
       listenIndex++;
-      httpServer.listen(listenPorts[listenIndex], "127.0.0.1");
+      httpServer.listen(listenPorts[listenIndex], "0.0.0.0");
       return;
     }
     if (!activeServerPort && err.code === "EADDRINUSE") {
@@ -1407,7 +1407,7 @@ function startHttpServer() {
   httpServer.on("listening", () => {
     activeServerPort = listenPorts[listenIndex];
     writeRuntimeConfigFn(activeServerPort);
-    console.log(`Clawd state server listening on 127.0.0.1:${activeServerPort}`);
+    console.log(`Clawd state server listening on 0.0.0.0:${activeServerPort}`);
     // Defer hook/plugin registration off the startup path. Each sync call
     // reads+parses+writes a config JSON (50-150ms cumulative on slow disks),
     // and they operate on independent files for independent agents, so

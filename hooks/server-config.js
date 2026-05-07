@@ -12,6 +12,27 @@ const STATE_PATH = "/state";
 const PERMISSION_PATH = "/permission";
 const RUNTIME_CONFIG_PATH = path.join(os.homedir(), ".clawd", "runtime.json");
 
+// WSL detection: when running inside WSL, 127.0.0.1 does not forward to the
+// Windows host. We must use the Windows host IP from /etc/resolv.conf instead.
+let _wslHost = null;
+let _wslChecked = false;
+function isWsl() {
+  if (_wslChecked) return _wslHost !== null;
+  _wslChecked = true;
+  try {
+    const version = fs.readFileSync("/proc/version", "utf8").toLowerCase();
+    if (!version.includes("microsoft") && !version.includes("wsl")) return false;
+    const resolv = fs.readFileSync("/etc/resolv.conf", "utf8");
+    const m = resolv.match(/^nameserver\s+(\S+)/m);
+    if (m) _wslHost = m[1];
+  } catch {}
+  return _wslHost !== null;
+}
+function resolveServerHost() {
+  if (isWsl()) return _wslHost;
+  return "127.0.0.1";
+}
+
 function normalizePort(value) {
   const port = Number(value);
   return Number.isInteger(port) && SERVER_PORTS.includes(port) ? port : null;
@@ -121,7 +142,7 @@ function splitPortCandidates(preferredPort, options = {}) {
 
 function buildPermissionUrl(port) {
   const safePort = normalizePort(port) || DEFAULT_SERVER_PORT;
-  return `http://127.0.0.1:${safePort}${PERMISSION_PATH}`;
+  return `http://${resolveServerHost()}:${safePort}${PERMISSION_PATH}`;
 }
 
 function readHeader(res, headerName) {
@@ -143,7 +164,7 @@ function isClawdResponse(res, body) {
 function probePort(port, timeoutMs, callback, options = {}) {
   const httpGet = options.httpGet || http.get;
   const req = httpGet(
-    { hostname: "127.0.0.1", port, path: STATE_PATH, timeout: timeoutMs },
+    { hostname: resolveServerHost(), port, path: STATE_PATH, timeout: timeoutMs },
     (res) => {
       let body = "";
       res.setEncoding("utf8");
@@ -165,7 +186,7 @@ function postStateToPort(port, payload, timeoutMs, callback, options = {}) {
   const httpRequest = options.httpRequest || http.request;
   const req = httpRequest(
     {
-      hostname: "127.0.0.1",
+      hostname: resolveServerHost(),
       port,
       path: STATE_PATH,
       method: "POST",
@@ -285,7 +306,7 @@ function postPermissionToPort(port, payload, timeoutMs, callback, options = {}) 
 
   const req = httpRequest(
     {
-      hostname: "127.0.0.1",
+      hostname: resolveServerHost(),
       port,
       path: PERMISSION_PATH,
       method: "POST",
@@ -488,4 +509,6 @@ module.exports = {
   splitPortCandidates,
   postStateToPort,
   writeRuntimeConfig,
+  resolveServerHost,
+  isWsl,
 };
