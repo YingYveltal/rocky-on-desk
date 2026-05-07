@@ -7,7 +7,7 @@ const fs = require("fs");
 const path = require("path");
 const os = require("os");
 const childProcess = require("child_process");
-const { buildPermissionUrl, DEFAULT_SERVER_PORT, PERMISSION_PATH, readRuntimePort, resolveNodeBin, resolveNodeBinAsync, isWslAvailableOnWindows, windowsPathToWsl } = require("./server-config");
+const { buildPermissionUrl, DEFAULT_SERVER_PORT, PERMISSION_PATH, readRuntimePort, resolveNodeBin, resolveNodeBinAsync } = require("./server-config");
 const { writeJsonAtomic, writeJsonAtomicAsync, asarUnpackedPath } = require("./json-utils");
 
 const DEFAULT_PARENT_DIR = path.join(os.homedir(), ".claude");
@@ -475,14 +475,7 @@ function buildCommandHookSpec(nodeBin, scriptPath, args = "", options = {}) {
   const platform = options.platform || process.platform;
   const argSuffix = args ? ` ${args}` : "";
 
-  // On Windows with WSL available, hooks are executed by WSL's node
-  // (via WSL interop). Convert scriptPath from E:/... → /mnt/e/...
-  let resolvedScriptPath = scriptPath;
-  if (platform === "win32" && isWslAvailableOnWindows()) {
-    resolvedScriptPath = windowsPathToWsl(scriptPath);
-  }
-
-  const quotedCommand = `"${nodeBin}" "${resolvedScriptPath}"${argSuffix}`;
+  const quotedCommand = `"${nodeBin}" "${scriptPath}"${argSuffix}`;
 
   // Remote hook deployment targets POSIX shells over SSH and relies on bash-style
   // env-prefix syntax (`CLAWD_REMOTE=1 cmd`). Keep that legacy form even if tests

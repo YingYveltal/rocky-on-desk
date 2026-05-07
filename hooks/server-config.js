@@ -33,39 +33,6 @@ function resolveServerHost() {
   return "127.0.0.1";
 }
 
-// ── WSL-on-Windows helpers ──
-// When claude.exe runs via WSL interop, hook commands go through WSL's node
-// (not Windows node). Windows paths like E:/... are not understood by WSL node.
-// We detect WSL availability on Windows and convert paths to /mnt/<drive>/...
-// format so hooks work regardless of which node executes them.
-
-let _wslOnWin = undefined;
-function isWslAvailableOnWindows() {
-  if (_wslOnWin !== undefined) return _wslOnWin;
-  if (process.platform !== "win32") {
-    _wslOnWin = false;
-    return false;
-  }
-  // Check for wsl.exe in System32 (present on Windows 10+ with WSL installed)
-  try {
-    const sysRoot = process.env.SystemRoot || process.env.windir || "C:\\Windows";
-    const wslExe = path.join(sysRoot, "System32", "wsl.exe");
-    fs.accessSync(wslExe, fs.constants.X_OK);
-    _wslOnWin = true;
-    return true;
-  } catch {
-    _wslOnWin = false;
-    return false;
-  }
-}
-
-function windowsPathToWsl(windowsPath) {
-  const normalized = String(windowsPath).replace(/\\/g, "/");
-  const match = normalized.match(/^([A-Za-z]):[\\/]?(.*)/);
-  if (!match) return normalized;
-  return `/mnt/${match[1].toLowerCase()}/${match[2]}`;
-}
-
 function normalizePort(value) {
   const port = Number(value);
   return Number.isInteger(port) && SERVER_PORTS.includes(port) ? port : null;
@@ -544,6 +511,4 @@ module.exports = {
   writeRuntimeConfig,
   resolveServerHost,
   isWsl,
-  isWslAvailableOnWindows,
-  windowsPathToWsl,
 };
