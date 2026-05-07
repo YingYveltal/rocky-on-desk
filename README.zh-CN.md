@@ -63,13 +63,35 @@ Rocky 住在你的桌面上，实时感知 AI 编程助手在做什么。作为�
 | 工作分级 | 打字(1) → 杂耍(2+) → 建造(3+) |
 | 点击反应 | 拖拽晃腿、双击弹跳 |
 | 空闲动画 | 光标追踪 + 随机张望 |
+| 音效 | 5 词 Rocky 词汇（WAV）— 完成、确认、错误、思考、醒来 |
 | 极简模式 | 暂未支持 |
+
+### 可用主题
+
+| 主题 | 描述 |
+|---|---|
+| **Rocky** | 经典球形岩石身体，金色声纳感应晶体 |
+| **Rocky Domed** | 带有保护性氙石穹顶的 Rocky（如在"万福玛利亚号"上所见） |
 
 ## 快速开始
 
-### 下载使用
+### 下载安装（推荐）
 
-从 **[Releases](https://github.com/YingYveltal/rocky-on-desk/releases)** 下载最新版本安装后启动，在 设置 → 主题 中选择 "Rocky"。
+1. 从 **[Releases](https://github.com/YingYveltal/rocky-on-desk/releases)** 下载最新安装包
+2. 运行 `Rocky-on-Desk-Setup-x64.exe` 安装
+3. 从开始菜单启动 **Rocky on Desk**
+4. 在设置中选择主题：**Rocky**（经典）或 **Rocky Domed**（带穹顶）
+
+### 连接 Claude Code
+
+让 Rocky 响应 Claude Code 事件，需要安装 hooks：
+
+```bash
+cd rocky-on-desk
+node hooks/install.js
+```
+
+这会在 `~/.claude/settings.json` 中注册命令 hooks。重启 Claude Code 会话后，Rocky 就会根据工具调用、思考、出错等状态自动切换动画。
 
 ### 源码运行
 

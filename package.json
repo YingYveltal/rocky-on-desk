@@ -1,6 +1,6 @@
 {
   "name": "rocky-on-desk",
-  "version": "0.7.0",
+  "version": "1.0.0",
   "description": "Rocky on Desk — a pixel-art desktop pet of Rocky the Eridian engineer from Project Hail Mary, built on clawd-on-desk.",
   "main": "src/main.js",
   "scripts": {
@@ -65,7 +65,7 @@
     "win": {
       "icon": "assets/icon.ico",
       "signAndEditExecutable": false,
-      "artifactName": "Clawd-on-Desk-Setup-${version}-${arch}.${ext}",
+      "artifactName": "Rocky-on-Desk-Setup-${version}-${arch}.${ext}",
       "target": [
         {
           "target": "nsis",

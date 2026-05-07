@@ -13,9 +13,9 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
       - run: npm install
-      - run: npx electron-builder --win --publish never
+      - run: npx electron-builder --win nsis:x64 --publish never
       - uses: actions/upload-artifact@v4
         with:
           name: windows-installer
@@ -29,7 +29,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
       - run: npm install
       - run: npx electron-builder --mac --publish never
       - uses: actions/upload-artifact@v4
@@ -45,7 +45,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
       - run: npm install
       - run: npx electron-builder --linux --publish never
       - uses: actions/upload-artifact@v4
@@ -62,12 +62,39 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
         with:
           path: artifacts
           merge-multiple: true
+      - name: Generate release body
+        run: |
+          cat > /tmp/release-body.md << 'EOFMARKER'
+          ## Rocky on Desk v${{ github.ref_name }}
+
+          Desktop pet of Rocky the Eridian engineer from *Project Hail Mary*.
+
+          ### Installation
+
+          1. Download the installer for your platform
+          2. **Windows**: Run `Rocky-on-Desk-Setup-x64.exe`
+          3. **macOS**: Mount the `.dmg` and drag to Applications
+          4. **Linux**: Run the `.AppImage` or install the `.deb`
+
+          ### Connect to Claude Code
+
+          After launching Rocky, install the hooks so he reacts to Claude Code events:
+
+          ```bash
+          cd rocky-on-desk
+          node hooks/install.js
+          ```
+
+          ### Themes
+
+          - **Rocky** — Classic spherical rock body with golden sonar crystals
+          - **Rocky Domed** — Rocky with a protective xenonite dome
+          EOFMARKER
       - uses: softprops/action-gh-release@v2
         with:
           files: artifacts/*
-          body_path: docs/releases/release-${{ github.ref_name }}.md
+          body_path: /tmp/release-body.md

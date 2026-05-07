@@ -63,13 +63,35 @@ Rocky lives on your desktop and reacts to what your AI coding agent is doing —
 | Working Tiers | Typing (1) → Juggling (2+) → Building (3+) |
 | Reactions | Drag dangle, double-click flail |
 | Idle Animations | Follow cursor + random look-around |
+| Sound Effects | 5-word Rocky vocabulary (WAV) — complete, confirm, error, thinking, waking |
 | Mini Mode | Not yet |
+
+### Available Themes
+
+| Theme | Description |
+|---|---|
+| **Rocky** | Classic spherical rock body with golden sonar crystals |
+| **Rocky Domed** | Rocky with a protective xenonite dome (as seen on the *Hail Mary*) |
 
 ## Quick Start
 
-### Download & Run
+### Download & Run (Recommended)
 
-Download the latest release from **[Releases](https://github.com/YingYveltal/rocky-on-desk/releases)** and launch. Then set your theme to "Rocky" in Settings → Theme.
+1. Download the latest installer from **[Releases](https://github.com/YingYveltal/rocky-on-desk/releases)**
+2. Run `Rocky-on-Desk-Setup-x64.exe` to install
+3. Launch **Rocky on Desk** from the Start Menu
+4. Choose your theme: **Rocky** (classic) or **Rocky Domed** (with xenonite dome)
+
+### Connect to Claude Code
+
+To make Rocky react to Claude Code events, install the hooks:
+
+```bash
+cd rocky-on-desk
+node hooks/install.js
+```
+
+This registers command hooks in `~/.claude/settings.json`. Restart your Claude Code session afterward. Rocky will now animate in response to tool calls, thinking, errors, and more.
 
 ### Run from Source
 
