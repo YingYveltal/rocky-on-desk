@@ -1,6 +1,6 @@
 {
   "name": "rocky-on-desk",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Rocky on Desk — a pixel-art desktop pet of Rocky the Eridian engineer from Project Hail Mary, built on clawd-on-desk.",
   "main": "src/main.js",
   "scripts": {
