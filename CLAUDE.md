@@ -83,6 +83,17 @@ Themes are auto-discovered by `theme-loader.js` scanning the `themes/` directory
 
 **Required states:** `idle`, `working`, `thinking` (plus `yawning`, `dozing`, `collapsing`, `waking` for full sleep sequence).
 
+### Sound System
+
+Rocky has a 5-word voice vocabulary generated via Windows TTS + organic UFO bed synthesis. Each theme ships its own sounds in `themes/<id>/sounds/`.
+
+**Adding a new sound** requires 3 steps:
+1. Add entry to `$soundDefs` in `scripts/generate-rocky-sounds.ps1`
+2. Add `playSound()` trigger in `src/state.js` (if new state mapping)
+3. Add `"soundName": "soundName.wav"` to `theme.json` → `"sounds"`
+
+See `docs/guides/sound-design.md` for the full pipeline, parameter reference, and tuning guide.
+
 ### Hook Event → State Mapping
 
 Defined in `hooks/clawd-hook.js` `resolveState()`:

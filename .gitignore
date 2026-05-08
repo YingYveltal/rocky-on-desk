@@ -28,6 +28,7 @@ docs/**
 !docs/guides/codex-wsl-clarification.md
 !docs/guides/codex-wsl-clarification.zh-CN.md
 !docs/guides/codex-wsl-clarification.ko-KR.md
+!docs/guides/sound-design.md
 !docs/project/
 !docs/project/agent-runtime-architecture.md
 !docs/project/theme-state-ui.md
