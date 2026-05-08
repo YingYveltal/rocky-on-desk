@@ -1085,6 +1085,9 @@ function togglePetVisibility() {
       if (perm.bubble && !perm.bubble.isDestroyed()) perm.bubble.hide();
     }
     hideUpdateBubble();
+    if (_speech && typeof _speech.hideSpeechBubble === "function") {
+      _speech.hideSpeechBubble();
+    }
     petHidden = true;
   }
   syncSessionHudVisibility();
@@ -1266,17 +1269,34 @@ function syncRendererStateAfterLoad({ includeStartupRecovery = true } = {}) {
 }
 
 // ── Sound playback ──
+// Two sound sources share a global lock so they never overlap.
+// playSound = state-transition notification (10s cooldown).
+// playSpeechSound = speech-bubble voice (5s cooldown, 50% vol for ambient).
 let lastSoundTime = 0;
 const SOUND_COOLDOWN_MS = 10000;
+const SPEECH_SOUND_COOLDOWN_MS = 5000;
+
+function _audioGate() {
+  if (soundMuted || doNotDisturb) return false;
+  const now = Date.now();
+  if (now - lastSoundTime < SPEECH_SOUND_COOLDOWN_MS) return false;
+  lastSoundTime = now;
+  return true;
+}
 
 function playSound(name) {
-  if (soundMuted || doNotDisturb) return;
-  const now = Date.now();
-  if (now - lastSoundTime < SOUND_COOLDOWN_MS) return;
+  if (!_audioGate()) return;
   const url = themeLoader.getSoundUrl(name);
   if (!url) return;
-  lastSoundTime = now;
   sendToRenderer("play-sound", { url, volume: soundVolume });
+}
+
+function playSpeechSound(name, ambient = false) {
+  if (!_audioGate()) return;
+  const url = themeLoader.getSoundUrl(name);
+  if (!url) return;
+  const vol = ambient ? soundVolume * 0.5 : soundVolume;
+  sendToRenderer("play-sound", { url, volume: vol });
 }
 
 function resetSoundCooldown() {
@@ -1437,6 +1457,17 @@ const _permCtx = {
 const _perm = require("./permission")(_permCtx);
 const { showPermissionBubble, resolvePermissionEntry, sendPermissionResponse, repositionBubbles, permLog, PASSTHROUGH_TOOLS, showCodexNotifyBubble, clearCodexNotifyBubbles, showKimiNotifyBubble, clearKimiNotifyBubbles, syncPermissionShortcuts, replyOpencodePermission } = _perm;
 const pendingPermissions = _perm.pendingPermissions;
+
+// ── Speech bubble — delegated to src/speech-bubble.js ──
+const _speech = require("./speech-bubble")({
+  get petHidden() { return petHidden; },
+  get doNotDisturb() { return doNotDisturb; },
+  getPetWindowBounds,
+  guardAlwaysOnTop,
+  playSpeechSound,
+});
+const { trySpeechBubble, setCurrentState: setCurrentSpeechState, hideSpeechBubble, repositionBubble: repositionSpeechBubble } = _speech;
+ipcMain.on("speech-size", (_event, w, h) => _speech.handleSpeechSize(w, h));
 let permDebugLog = null; // set after app.whenReady()
 let updateDebugLog = null; // set after app.whenReady()
 let sessionDebugLog = null; // set after app.whenReady()
@@ -1469,6 +1500,9 @@ const {
 function repositionFloatingBubbles() {
   if (pendingPermissions.length) repositionBubbles();
   repositionUpdateBubble();
+  if (_speech && typeof _speech.repositionBubble === "function") {
+    _speech.repositionBubble();
+  }
 }
 
 // ── macOS cross-Space visibility helper ──
@@ -1534,6 +1568,8 @@ const _stateCtx = {
   focusTerminalWindow: (...args) => focusTerminalWindow(...args),
   resolvePermissionEntry: (...args) => resolvePermissionEntry(...args),
   dismissPermissionsForDnd: (...args) => _perm.dismissPermissionsForDnd(...args),
+  trySpeechBubble: (state) => trySpeechBubble(state),
+  setCurrentSpeechState: (state) => setCurrentSpeechState(state),
   showKimiNotifyBubble: (...args) => showKimiNotifyBubble(...args),
   clearKimiNotifyBubbles: (...args) => clearKimiNotifyBubbles(...args),
   // state.js needs this to gate startKimiPermissionPoll symmetrically with
@@ -5075,6 +5111,7 @@ if (!gotTheLock) {
     _tick.cleanup();
     _mini.cleanup();
     _sessionHud.cleanup();
+    if (_speech && typeof _speech.destroyBubble === "function") _speech.destroyBubble();
     if (_codexMonitor) _codexMonitor.stop();
     stopTopmostWatchdog();
     if (hwndRecoveryTimer) { clearTimeout(hwndRecoveryTimer); hwndRecoveryTimer = null; }

@@ -486,6 +486,15 @@ function applyState(state, svgOverride) {
   ctx.sendToHitWin("hit-state-sync", { currentSvg: svg, currentState: state });
   ctx.sendToHitWin("hit-cancel-reaction");
 
+  // Speech bubble on state transitions
+  if (state !== previousState && typeof ctx.trySpeechBubble === "function") {
+    ctx.trySpeechBubble(state);
+  }
+  // Keep speech module aware of current state for ambient timer
+  if (typeof ctx.setCurrentSpeechState === "function") {
+    ctx.setCurrentSpeechState(state);
+  }
+
   if (state !== "idle" && state !== "mini-idle") {
     ctx.sendToRenderer("eye-move", 0, 0);
   }

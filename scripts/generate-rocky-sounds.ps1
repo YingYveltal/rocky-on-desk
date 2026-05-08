@@ -514,6 +514,233 @@ $soundDefs = @(
         BedAmpHz = 0.75;   BedAmpDepth = 0.55
         BedDriftHz = 0.30; BedDriftDepth = 35
         BedRingHz = 80;    BedRingMix = 0.28;    BedAmp = 0.13
+    },
+    # ── Speech bubble voice clips (new) ──
+    @{
+        # FIX — determined, energetic
+        Name = "fix";      Word = "Fix";         TtsRate = 3
+        SlowFactors   = @(0.84, 0.80, 0.83);  VolumeFactors = @(1.40, 1.35, 1.55);  GapsMs = @(50, 65)
+        BedFreq = 190;     BedWobbleHz = 1.0;    BedWobbleDepth = 50
+        BedAmpHz = 0.65;   BedAmpDepth = 0.55
+        BedDriftHz = 0.28; BedDriftDepth = 38
+        BedRingHz = 72;    BedRingMix = 0.28;    BedAmp = 0.13
+    },
+    @{
+        # JAZZ HANDS — playful, bright
+        Name = "jazzhands"; Word = "Jazz Hands"; TtsRate = 4
+        SlowFactors   = @(0.82, 0.78, 0.80);  VolumeFactors = @(1.40, 1.35, 1.55);  GapsMs = @(55, 70)
+        BedFreq = 210;     BedWobbleHz = 1.1;    BedWobbleDepth = 45
+        BedAmpHz = 0.70;   BedAmpDepth = 0.50
+        BedDriftHz = 0.30; BedDriftDepth = 35
+        BedRingHz = 78;    BedRingMix = 0.25;    BedAmp = 0.12
+    },
+    @{
+        # FIST BUMP — warm, friendly
+        Name = "fistbump"; Word = "Fist Bump";  TtsRate = 2
+        SlowFactors   = @(0.86, 0.83, 0.85);  VolumeFactors = @(1.35, 1.30, 1.50);  GapsMs = @(60, 75)
+        BedFreq = 175;     BedWobbleHz = 0.85;   BedWobbleDepth = 52
+        BedAmpHz = 0.60;   BedAmpDepth = 0.58
+        BedDriftHz = 0.23; BedDriftDepth = 42
+        BedRingHz = 68;    BedRingMix = 0.30;    BedAmp = 0.14
+    },
+    @{
+        # ROCKY — proud, confident
+        Name = "rocky";    Word = "Rocky";       TtsRate = 3
+        SlowFactors   = @(0.84, 0.81, 0.82);  VolumeFactors = @(1.42, 1.38, 1.58);  GapsMs = @(50, 60)
+        BedFreq = 185;     BedWobbleHz = 0.95;   BedWobbleDepth = 48
+        BedAmpHz = 0.68;   BedAmpDepth = 0.52
+        BedDriftHz = 0.26; BedDriftDepth = 40
+        BedRingHz = 73;    BedRingMix = 0.27;    BedAmp = 0.12
+    },
+    @{
+        # DIRTY — scolding, lower register
+        Name = "dirty";    Word = "Dirty";       TtsRate = 1
+        SlowFactors   = @(0.88, 0.84, 0.89);  VolumeFactors = @(1.30, 1.35, 1.45);  GapsMs = @(65, 85)
+        BedFreq = 165;     BedWobbleHz = 0.75;   BedWobbleDepth = 58
+        BedAmpHz = 0.55;   BedAmpDepth = 0.62
+        BedDriftHz = 0.22; BedDriftDepth = 45
+        BedRingHz = 62;    BedRingMix = 0.32;    BedAmp = 0.15
+    },
+    @{
+        # CELEBRATE — excited, high energy
+        Name = "celebrate"; Word = "Celebrate";  TtsRate = 5
+        SlowFactors   = @(0.81, 0.77, 0.79);  VolumeFactors = @(1.45, 1.40, 1.60);  GapsMs = @(45, 55)
+        BedFreq = 225;     BedWobbleHz = 1.15;   BedWobbleDepth = 42
+        BedAmpHz = 0.75;   BedAmpDepth = 0.48
+        BedDriftHz = 0.32; BedDriftDepth = 33
+        BedRingHz = 82;    BedRingMix = 0.25;    BedAmp = 0.11
+    },
+    @{
+        # OBSERVE — curious, thoughtful
+        Name = "observe";  Word = "Observe";     TtsRate = 2
+        SlowFactors   = @(0.85, 0.83, 0.80);  VolumeFactors = @(1.35, 1.30, 1.45);  GapsMs = @(55, 70)
+        BedFreq = 195;     BedWobbleHz = 0.92;   BedWobbleDepth = 50
+        BedAmpHz = 0.63;   BedAmpDepth = 0.55
+        BedDriftHz = 0.27; BedDriftDepth = 38
+        BedRingHz = 74;    BedRingMix = 0.28;    BedAmp = 0.13
+    },
+    @{
+        # BUILD — constructive, solid
+        Name = "build";    Word = "Build";       TtsRate = 3
+        SlowFactors   = @(0.85, 0.82, 0.84);  VolumeFactors = @(1.38, 1.32, 1.52);  GapsMs = @(50, 65)
+        BedFreq = 185;     BedWobbleHz = 0.95;   BedWobbleDepth = 48
+        BedAmpHz = 0.63;   BedAmpDepth = 0.53
+        BedDriftHz = 0.26; BedDriftDepth = 40
+        BedRingHz = 71;    BedRingMix = 0.28;    BedAmp = 0.13
+    },
+    @{
+        # BIG SCIENCE — awed, inspired
+        Name = "bigscience"; Word = "Big Science"; TtsRate = 4
+        SlowFactors   = @(0.83, 0.79, 0.81);  VolumeFactors = @(1.42, 1.38, 1.58);  GapsMs = @(55, 70)
+        BedFreq = 215;     BedWobbleHz = 1.05;   BedWobbleDepth = 45
+        BedAmpHz = 0.70;   BedAmpDepth = 0.50
+        BedDriftHz = 0.30; BedDriftDepth = 36
+        BedRingHz = 76;    BedRingMix = 0.26;    BedAmp = 0.12
+    },
+    @{
+        # CLEAN — brisk, efficient
+        Name = "clean";    Word = "Clean";       TtsRate = 3
+        SlowFactors   = @(0.85, 0.82, 0.84);  VolumeFactors = @(1.36, 1.32, 1.50);  GapsMs = @(50, 60)
+        BedFreq = 190;     BedWobbleHz = 0.95;   BedWobbleDepth = 50
+        BedAmpHz = 0.64;   BedAmpDepth = 0.53
+        BedDriftHz = 0.27; BedDriftDepth = 38
+        BedRingHz = 72;    BedRingMix = 0.28;    BedAmp = 0.13
+    },
+    @{
+        # THUMBS UP — cheerful, approving
+        Name = "thumbsup"; Word = "Thumbs Up";   TtsRate = 4
+        SlowFactors   = @(0.83, 0.79, 0.81);  VolumeFactors = @(1.42, 1.35, 1.55);  GapsMs = @(45, 60)
+        BedFreq = 205;     BedWobbleHz = 1.05;   BedWobbleDepth = 45
+        BedAmpHz = 0.70;   BedAmpDepth = 0.48
+        BedDriftHz = 0.29; BedDriftDepth = 36
+        BedRingHz = 76;    BedRingMix = 0.26;    BedAmp = 0.12
+    },
+    # ── Ambient full-sentence voice clips (1 rep, no triple-repeat) ──
+    @{
+        # "You are friend." — warm, covers friend/farewell lines
+        Name = "friend";  Word = "You are friend.";  TtsRate = 1
+        SlowFactors = @(0.88);  VolumeFactors = @(1.40);  GapsMs = @()
+        BedFreq = 170;  BedWobbleHz = 0.80;  BedWobbleDepth = 50
+        BedAmpHz = 0.55;  BedAmpDepth = 0.55
+        BedDriftHz = 0.22;  BedDriftDepth = 40
+        BedRingHz = 65;  BedRingMix = 0.28;  BedAmp = 0.14
+    },
+    @{
+        # "I wait." — patient, calm
+        Name = "wait";  Word = "I wait.";  TtsRate = 0
+        SlowFactors = @(0.89);  VolumeFactors = @(1.35);  GapsMs = @()
+        BedFreq = 165;  BedWobbleHz = 0.72;  BedWobbleDepth = 52
+        BedAmpHz = 0.52;  BedAmpDepth = 0.58
+        BedDriftHz = 0.20;  BedDriftDepth = 42
+        BedRingHz = 60;  BedRingMix = 0.30;  BedAmp = 0.15
+    },
+    @{
+        # "I go home. Slow." — melancholic, covers home/return/longing lines
+        Name = "home";  Word = "I go home. Slow.";  TtsRate = 0
+        SlowFactors = @(0.90);  VolumeFactors = @(1.35);  GapsMs = @()
+        BedFreq = 160;  BedWobbleHz = 0.68;  BedWobbleDepth = 55
+        BedAmpHz = 0.48;  BedAmpDepth = 0.60
+        BedDriftHz = 0.18;  BedDriftDepth = 45
+        BedRingHz = 58;  BedRingMix = 0.32;  BedAmp = 0.16
+    },
+    @{
+        # "I am scary space monster." — playful dramatic, iconic Rocky
+        Name = "scary";  Word = "I am scary space monster.";  TtsRate = 2
+        SlowFactors = @(0.86);  VolumeFactors = @(1.42);  GapsMs = @()
+        BedFreq = 195;  BedWobbleHz = 1.00;  BedWobbleDepth = 48
+        BedAmpHz = 0.65;  BedAmpDepth = 0.52
+        BedDriftHz = 0.27;  BedDriftDepth = 38
+        BedRingHz = 72;  BedRingMix = 0.28;  BedAmp = 0.13
+    },
+    @{
+        # "You are leaky space blob." — playful, iconic Rocky
+        Name = "leaky";  Word = "You are leaky space blob.";  TtsRate = 2
+        SlowFactors = @(0.86);  VolumeFactors = @(1.40);  GapsMs = @()
+        BedFreq = 190;  BedWobbleHz = 0.98;  BedWobbleDepth = 48
+        BedAmpHz = 0.63;  BedAmpDepth = 0.52
+        BedDriftHz = 0.26;  BedDriftDepth = 38
+        BedRingHz = 70;  BedRingMix = 0.28;  BedAmp = 0.13
+    },
+    @{
+        # "Humans are strange." — observational
+        Name = "humans";  Word = "Humans are strange.";  TtsRate = 1
+        SlowFactors = @(0.87);  VolumeFactors = @(1.38);  GapsMs = @()
+        BedFreq = 185;  BedWobbleHz = 0.90;  BedWobbleDepth = 50
+        BedAmpHz = 0.60;  BedAmpDepth = 0.55
+        BedDriftHz = 0.25;  BedDriftDepth = 40
+        BedRingHz = 70;  BedRingMix = 0.28;  BedAmp = 0.13
+    },
+    @{
+        # "Almost there." — determined progress
+        Name = "almost";  Word = "Almost there.";  TtsRate = 2
+        SlowFactors = @(0.87);  VolumeFactors = @(1.40);  GapsMs = @()
+        BedFreq = 190;  BedWobbleHz = 0.95;  BedWobbleDepth = 48
+        BedAmpHz = 0.63;  BedAmpDepth = 0.53
+        BedDriftHz = 0.26;  BedDriftDepth = 38
+        BedRingHz = 71;  BedRingMix = 0.28;  BedAmp = 0.13
+    },
+    @{
+        # "Hmm." — short thoughtful hum
+        Name = "hmm";  Word = "Hmm.";  TtsRate = 0
+        SlowFactors = @(0.91);  VolumeFactors = @(1.30);  GapsMs = @()
+        BedFreq = 155;  BedWobbleHz = 0.65;  BedWobbleDepth = 58
+        BedAmpHz = 0.45;  BedAmpDepth = 0.62
+        BedDriftHz = 0.18;  BedDriftDepth = 45
+        BedRingHz = 55;  BedRingMix = 0.33;  BedAmp = 0.16
+    },
+    @{
+        # "Why humans need water so much, question?" — curious, covers question-tagged lines
+        Name = "question";  Word = "Why humans need water so much, question?";  TtsRate = 2
+        SlowFactors = @(0.86);  VolumeFactors = @(1.42);  GapsMs = @()
+        BedFreq = 195;  BedWobbleHz = 0.95;  BedWobbleDepth = 48
+        BedAmpHz = 0.63;  BedAmpDepth = 0.53
+        BedDriftHz = 0.27;  BedDriftDepth = 38
+        BedRingHz = 73;  BedRingMix = 0.27;  BedAmp = 0.13
+    },
+    @{
+        # "I am very very very happy." — bright, joyful, iconic triple-very
+        Name = "happy";  Word = "I am very very very happy.";  TtsRate = 3
+        SlowFactors = @(0.85);  VolumeFactors = @(1.45);  GapsMs = @()
+        BedFreq = 210;  BedWobbleHz = 1.08;  BedWobbleDepth = 43
+        BedAmpHz = 0.72;  BedAmpDepth = 0.48
+        BedDriftHz = 0.30;  BedDriftDepth = 35
+        BedRingHz = 78;  BedRingMix = 0.26;  BedAmp = 0.12
+    },
+    @{
+        # "I sleep better if you observe." — soft, iconic Rocky line
+        Name = "sleep";  Word = "I sleep better if you observe.";  TtsRate = 0
+        SlowFactors = @(0.90);  VolumeFactors = @(1.32);  GapsMs = @()
+        BedFreq = 155;  BedWobbleHz = 0.65;  BedWobbleDepth = 58
+        BedAmpHz = 0.45;  BedAmpDepth = 0.62
+        BedDriftHz = 0.17;  BedDriftDepth = 48
+        BedRingHz = 55;  BedRingMix = 0.33;  BedAmp = 0.17
+    },
+    @{
+        # "Save Earth. Save Erid." — serious, determined
+        Name = "save";  Word = "Save Earth. Save Erid.";  TtsRate = 1
+        SlowFactors = @(0.88);  VolumeFactors = @(1.40);  GapsMs = @()
+        BedFreq = 180;  BedWobbleHz = 0.88;  BedWobbleDepth = 50
+        BedAmpHz = 0.60;  BedAmpDepth = 0.55
+        BedDriftHz = 0.24;  BedDriftDepth = 40
+        BedRingHz = 68;  BedRingMix = 0.29;  BedAmp = 0.14
+    },
+    @{
+        # "I solve." — determined, covers problem-solving lines
+        Name = "solve";  Word = "I solve.";  TtsRate = 2
+        SlowFactors = @(0.87);  VolumeFactors = @(1.40);  GapsMs = @()
+        BedFreq = 190;  BedWobbleHz = 0.95;  BedWobbleDepth = 48
+        BedAmpHz = 0.63;  BedAmpDepth = 0.53
+        BedDriftHz = 0.26;  BedDriftDepth = 38
+        BedRingHz = 71;  BedRingMix = 0.28;  BedAmp = 0.13
+    },
+    @{
+        # "What if, question?" — curious thinking
+        Name = "learn";  Word = "What if, question?";  TtsRate = 2
+        SlowFactors = @(0.86);  VolumeFactors = @(1.40);  GapsMs = @()
+        BedFreq = 190;  BedWobbleHz = 0.90;  BedWobbleDepth = 50
+        BedAmpHz = 0.60;  BedAmpDepth = 0.55
+        BedDriftHz = 0.25;  BedDriftDepth = 38
+        BedRingHz = 72;  BedRingMix = 0.28;  BedAmp = 0.13
     }
 )
 
@@ -526,7 +753,8 @@ foreach ($t in $themeNames) {
 }
 
 foreach ($s in $soundDefs) {
-    Write-Host ("  [{0,-9}] '{1} x3'..." -f $s.Name, $s.Word) -NoNewline
+    $repLabel = "x" + $s.SlowFactors.Length
+    Write-Host ("  [{0,-9}] '{1}' {2}..." -f $s.Name, $s.Word, $repLabel) -NoNewline
 
     # 1. TTS source word
     $tts = New-TtsSamples -Text $s.Word -Rate $s.TtsRate
